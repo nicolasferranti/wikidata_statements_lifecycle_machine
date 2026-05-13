@@ -1,0 +1,6 @@
+[2026-05-07 14:47:04] Loading simplified one-of constraints: historical_constraints/one_of_simplified_constraints.json
+[2026-05-07 14:47:04] Loaded properties with one-of constraints: 193
+[2026-05-07 14:47:04] Validating enriched file: tanon_dataset/constraint-corrections-oneOf.enriched.csv
+[2026-05-07 14:47:06] Finished validation. Final summary={'property_level': {'no_constraint_lifecycle_intersection': 8256, 'historical_violation': 3583, 'no_historical_row': 1089, 'not_violation_object_allowed': 1408, 'no_constraint_for_property': 738}, 'tanon_constraint_id_level': {'no_constraint_lifecycle_intersection': 8260, 'historical_violation': 3579, 'no_historical_row': 1089, 'not_violation_object_allowed': 1408, 'no_constraint_for_property': 738}}
+[2026-05-07 14:47:06] Wrote output: tanon_dataset/constraint-corrections-oneOf.historical_validated.csv
+[2026-05-07 14:47:06] Wrote summary: tanon_dataset/constraint-corrections-oneOf.historical_validated.csv.summary.json

@@ -1,0 +1,16 @@
+{
+  "property_level": {
+    "no_constraint_lifecycle_intersection": 8256,
+    "historical_violation": 3583,
+    "no_historical_row": 1089,
+    "not_violation_object_allowed": 1408,
+    "no_constraint_for_property": 738
+  },
+  "tanon_constraint_id_level": {
+    "no_constraint_lifecycle_intersection": 8260,
+    "historical_violation": 3579,
+    "no_historical_row": 1089,
+    "not_violation_object_allowed": 1408,
+    "no_constraint_for_property": 738
+  }
+}

@@ -1,0 +1,2826 @@
+{
+  "wd:P1026": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P170",
+        "start_date": "2021-06-07T23:12:59+00:00",
+        "end_date": "2021-06-08T20:57:36+00:00",
+        "constraint_id": "wds:P1026-b983f4cb-45b2-c0d4-f059-a4ee2461d0b7"
+      },
+      {
+        "entity": "wd:P50",
+        "start_date": "2018-04-07T16:53:49+00:00",
+        "end_date": "2021-06-07T23:12:59+00:00",
+        "constraint_id": "wds:P1026-b983f4cb-45b2-c0d4-f059-a4ee2461d0b7"
+      },
+      {
+        "entity": "wd:P50",
+        "start_date": "2021-06-07T23:19:48+00:00",
+        "end_date": "2021-06-08T20:57:25+00:00",
+        "constraint_id": "wds:P1026-b983f4cb-45b2-c0d4-f059-a4ee2461d0b7"
+      },
+      {
+        "entity": "wd:P86",
+        "start_date": "2021-06-07T23:19:48+00:00",
+        "end_date": "2021-06-08T20:57:25+00:00",
+        "constraint_id": "wds:P1026-b983f4cb-45b2-c0d4-f059-a4ee2461d0b7"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P10280": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P971",
+        "start_date": "2022-01-23T07:16:16+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P10280-EDEFA6E3-EC56-4B92-AFE8-D205A6BD5A2B"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1029": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P450",
+        "start_date": "2018-12-14T15:28:39+00:00",
+        "end_date": "2018-12-29T20:48:36+00:00",
+        "constraint_id": "wds:P1029-5d2473f3-4409-9dab-5d1e-cd53cd3a3954"
+      },
+      {
+        "entity": "wd:P450",
+        "start_date": "2021-09-16T02:24:32+00:00",
+        "end_date": "2021-09-16T02:30:11+00:00",
+        "constraint_id": "wds:P1029-5d2473f3-4409-9dab-5d1e-cd53cd3a3954"
+      },
+      {
+        "entity": "wd:P5096",
+        "start_date": "2018-04-26T12:26:29+00:00",
+        "end_date": "2018-12-14T15:28:39+00:00",
+        "constraint_id": "wds:P1029-5d2473f3-4409-9dab-5d1e-cd53cd3a3954"
+      },
+      {
+        "entity": "wd:P5096",
+        "start_date": "2018-12-29T20:48:36+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1029-5d2473f3-4409-9dab-5d1e-cd53cd3a3954"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1066": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P802",
+        "start_date": "2017-07-13T01:45:07+00:00",
+        "end_date": "2017-12-11T17:48:05+00:00",
+        "constraint_id": "wds:P1066-A42A2E15-5A4F-49D0-BD5B-041ABD1C379E"
+      },
+      {
+        "entity": "wd:P802",
+        "start_date": "2018-01-23T22:43:23+00:00",
+        "end_date": "2019-09-01T07:05:38+00:00",
+        "constraint_id": "wds:P1066-A42A2E15-5A4F-49D0-BD5B-041ABD1C379E"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P10822": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P10822",
+        "start_date": "2022-06-20T20:39:19+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P10822-4456b836-40e6-36b2-3d35-94dc99bf5893"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P115": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P466",
+        "start_date": "2017-09-06T18:48:17+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P115-f89b6014-4fb8-bde3-70c7-754093eaae84"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1151": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1204",
+        "start_date": "2017-07-13T01:35:05+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1151-E0AD7B43-A4CA-40B7-AB0F-24ED7E0F1D6C"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1200": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P971",
+        "start_date": "2017-07-13T01:29:06+00:00",
+        "end_date": "2019-08-16T06:23:00+00:00",
+        "constraint_id": "wds:P1200-1B95B882-6DC8-417C-AE68-7F5827305AD5"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1204": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1151",
+        "start_date": "2017-07-13T01:27:26+00:00",
+        "end_date": "2020-10-09T03:32:45+00:00",
+        "constraint_id": "wds:P1204-407CD7B2-7701-49B9-A0EF-A4917FFD8385"
+      },
+      {
+        "entity": "wd:P1151",
+        "start_date": "2020-10-09T05:23:09+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1204-407CD7B2-7701-49B9-A0EF-A4917FFD8385"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P121": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P137",
+        "start_date": "2019-04-27T08:46:54+00:00",
+        "end_date": "2019-07-02T15:14:11+00:00",
+        "constraint_id": "wds:P121-709b8439-4a90-9172-0631-b5288e356546"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P127": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1830",
+        "start_date": "2023-02-15T18:59:53+00:00",
+        "end_date": "2023-02-18T12:36:16+00:00",
+        "constraint_id": "wds:P127-e2845539-448a-b840-94aa-bb8267292c61"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1283": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P138",
+        "start_date": "2017-07-13T01:15:37+00:00",
+        "end_date": "2019-03-01T09:22:42+00:00",
+        "constraint_id": "wds:P1283-E2A50D27-C48A-4810-93FF-CDDF5A90407F"
+      },
+      {
+        "entity": "wd:P138",
+        "start_date": "2019-03-01T09:23:28+00:00",
+        "end_date": "2020-10-27T08:59:21+00:00",
+        "constraint_id": "wds:P1283-E2A50D27-C48A-4810-93FF-CDDF5A90407F"
+      },
+      {
+        "entity": "wd:P161",
+        "start_date": "2020-12-12T18:21:09+00:00",
+        "end_date": "2020-12-12T18:26:24+00:00",
+        "constraint_id": "wds:P1283-EAE5C029-3A3E-4538-91D3-EE42C8BC5F58"
+      },
+      {
+        "entity": "wd:P175",
+        "start_date": "2017-07-13T01:15:38+00:00",
+        "end_date": "2020-10-27T08:59:05+00:00",
+        "constraint_id": "wds:P1283-EAE5C029-3A3E-4538-91D3-EE42C8BC5F58"
+      },
+      {
+        "entity": "wd:P921",
+        "start_date": "2020-10-27T08:59:05+00:00",
+        "end_date": "2020-12-12T18:21:09+00:00",
+        "constraint_id": "wds:P1283-EAE5C029-3A3E-4538-91D3-EE42C8BC5F58"
+      },
+      {
+        "entity": "wd:P921",
+        "start_date": "2020-12-12T18:26:24+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1283-EAE5C029-3A3E-4538-91D3-EE42C8BC5F58"
+      }
+    ],
+    "pq:P2303": [
+      {
+        "entity": "wd:Q1299",
+        "start_date": "2019-01-23T20:35:26+00:00",
+        "end_date": "2019-03-01T09:22:42+00:00",
+        "constraint_id": "wds:P1283-E2A50D27-C48A-4810-93FF-CDDF5A90407F"
+      },
+      {
+        "entity": "wd:Q1299",
+        "start_date": "2019-03-01T09:23:28+00:00",
+        "end_date": "2020-10-27T08:59:21+00:00",
+        "constraint_id": "wds:P1283-E2A50D27-C48A-4810-93FF-CDDF5A90407F"
+      },
+      {
+        "entity": "wd:Q1750628",
+        "start_date": "2019-01-23T20:34:49+00:00",
+        "end_date": "2020-10-27T08:59:05+00:00",
+        "constraint_id": "wds:P1283-EAE5C029-3A3E-4538-91D3-EE42C8BC5F58"
+      },
+      {
+        "entity": "wd:Q1750628",
+        "start_date": "2019-01-23T20:35:26+00:00",
+        "end_date": "2019-03-01T09:22:42+00:00",
+        "constraint_id": "wds:P1283-E2A50D27-C48A-4810-93FF-CDDF5A90407F"
+      },
+      {
+        "entity": "wd:Q1750628",
+        "start_date": "2019-03-01T09:23:28+00:00",
+        "end_date": "2020-10-27T08:59:21+00:00",
+        "constraint_id": "wds:P1283-E2A50D27-C48A-4810-93FF-CDDF5A90407F"
+      },
+      {
+        "entity": "wd:Q231156",
+        "start_date": "2019-06-12T15:30:18+00:00",
+        "end_date": "2020-10-27T08:59:21+00:00",
+        "constraint_id": "wds:P1283-E2A50D27-C48A-4810-93FF-CDDF5A90407F"
+      },
+      {
+        "entity": "wd:Q622435",
+        "start_date": "2019-01-23T20:34:49+00:00",
+        "end_date": "2020-10-27T08:59:05+00:00",
+        "constraint_id": "wds:P1283-EAE5C029-3A3E-4538-91D3-EE42C8BC5F58"
+      },
+      {
+        "entity": "wd:Q622435",
+        "start_date": "2019-01-23T20:35:26+00:00",
+        "end_date": "2019-03-01T09:22:42+00:00",
+        "constraint_id": "wds:P1283-E2A50D27-C48A-4810-93FF-CDDF5A90407F"
+      },
+      {
+        "entity": "wd:Q622435",
+        "start_date": "2019-03-01T09:23:28+00:00",
+        "end_date": "2020-10-27T08:59:21+00:00",
+        "constraint_id": "wds:P1283-E2A50D27-C48A-4810-93FF-CDDF5A90407F"
+      },
+      {
+        "entity": "wd:Q937186",
+        "start_date": "2019-01-23T20:35:26+00:00",
+        "end_date": "2019-03-01T09:22:42+00:00",
+        "constraint_id": "wds:P1283-E2A50D27-C48A-4810-93FF-CDDF5A90407F"
+      },
+      {
+        "entity": "wd:Q937186",
+        "start_date": "2019-03-01T09:23:28+00:00",
+        "end_date": "2020-10-27T08:59:21+00:00",
+        "constraint_id": "wds:P1283-E2A50D27-C48A-4810-93FF-CDDF5A90407F"
+      }
+    ]
+  },
+  "wd:P1299": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P180",
+        "start_date": "2022-04-30T17:23:44+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1299-75d22312-402c-5bf7-03b9-439e231f152f"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1308": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P39",
+        "start_date": "2017-07-13T01:10:40+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1308-604ADC6F-BBB6-4E48-B9AE-DE4CF6FDADEC"
+      },
+      {
+        "entity": "wd:P803",
+        "start_date": "2020-01-21T16:54:14+00:00",
+        "end_date": "2020-01-25T20:00:14+00:00",
+        "constraint_id": "wds:P1308-604ADC6F-BBB6-4E48-B9AE-DE4CF6FDADEC"
+      },
+      {
+        "entity": "wd:P97",
+        "start_date": "2018-11-27T12:14:20+00:00",
+        "end_date": "2019-01-05T02:39:03+00:00",
+        "constraint_id": "wds:P1308-604ADC6F-BBB6-4E48-B9AE-DE4CF6FDADEC"
+      },
+      {
+        "entity": "wd:P97",
+        "start_date": "2019-01-05T02:39:00+00:00",
+        "end_date": "2019-01-05T02:40:12+00:00",
+        "constraint_id": "wds:P1308-df1ebd17-4b94-4727-e985-8b1a03ba3326"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P131": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P150",
+        "start_date": "2017-07-05T15:56:21+00:00",
+        "end_date": "2017-07-13T07:15:39+00:00",
+        "constraint_id": "wds:P131-5a4cbc2d-446b-42c9-2ef3-c0f454735543"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1312": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1678",
+        "start_date": "2017-07-13T01:10:03+00:00",
+        "end_date": "2017-08-21T10:41:47+00:00",
+        "constraint_id": "wds:P1312-833E5931-0B4F-4754-9D49-D48CDBE0AEE2"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1344": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1923",
+        "start_date": "2019-03-25T15:42:20+00:00",
+        "end_date": "2019-05-06T09:15:19+00:00",
+        "constraint_id": "wds:P1344-5b7f0fc0-42ad-33bc-b203-47b79ed7f878"
+      },
+      {
+        "entity": "wd:P710",
+        "start_date": "2019-03-26T20:03:04+00:00",
+        "end_date": "2019-05-05T15:44:52+00:00",
+        "constraint_id": "wds:P1344-5b7f0fc0-42ad-33bc-b203-47b79ed7f878"
+      },
+      {
+        "entity": "wd:P710",
+        "start_date": "2019-05-05T15:44:48+00:00",
+        "end_date": "2019-05-06T09:15:22+00:00",
+        "constraint_id": "wds:P1344-53cc8099-4853-9ec0-dd9c-63574e218cae"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1346": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P2522",
+        "start_date": "2019-02-09T11:35:51+00:00",
+        "end_date": "2019-03-24T15:08:48+00:00",
+        "constraint_id": "wds:P1346-a9ce9abb-4ce1-e3ce-13dc-2dc9edf61d25"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P13478": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P427",
+        "start_date": "2025-04-26T05:56:25+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P13478-8000ac8b-49d4-b9e6-9c97-8d11d2dcb9db"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1365": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1366",
+        "start_date": "2017-07-13T01:02:52+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1365-DEA56F0C-0E53-4C60-A38B-39C8F2041814"
+      },
+      {
+        "entity": "wd:P7888",
+        "start_date": "2022-10-12T07:40:43+00:00",
+        "end_date": "2022-12-23T03:29:11+00:00",
+        "constraint_id": "wds:P1365-DEA56F0C-0E53-4C60-A38B-39C8F2041814"
+      },
+      {
+        "entity": "wd:P7888",
+        "start_date": "2022-12-23T03:29:06+00:00",
+        "end_date": "2022-12-23T03:31:44+00:00",
+        "constraint_id": "wds:P1365-20c679f3-457a-62a5-dbfd-4d53d7e138f9"
+      },
+      {
+        "entity": "wd:P7888",
+        "start_date": "2023-08-27T15:45:48+00:00",
+        "end_date": "2023-09-13T01:31:09+00:00",
+        "constraint_id": "wds:P1365-DEA56F0C-0E53-4C60-A38B-39C8F2041814"
+      },
+      {
+        "entity": "wd:P7888",
+        "start_date": "2023-09-13T01:31:06+00:00",
+        "end_date": "2023-09-13T01:45:22+00:00",
+        "constraint_id": "wds:P1365-31b4e31a-4a90-c0e6-7838-09c78e9da399"
+      },
+      {
+        "entity": "wd:P7888",
+        "start_date": "2025-01-12T18:04:42+00:00",
+        "end_date": "2025-01-12T18:07:45+00:00",
+        "constraint_id": "wds:P1365-84E12970-48E5-4735-AC2C-DB9347B47AB1"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1366": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1365",
+        "start_date": "2017-07-13T01:02:44+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1366-E5424D6B-5715-4963-94BA-AF22151E9930"
+      },
+      {
+        "entity": "wd:P7888",
+        "start_date": "2025-01-12T18:03:30+00:00",
+        "end_date": "2025-01-12T18:04:42+00:00",
+        "constraint_id": "wds:P1366-4b04222c-42bc-7945-ee8b-b0c453413fea"
+      }
+    ],
+    "pq:P2303": [
+      {
+        "entity": "wd:Q39145498",
+        "start_date": "2021-09-06T09:26:52+00:00",
+        "end_date": "2021-09-06T18:27:06+00:00",
+        "constraint_id": "wds:P1366-E5424D6B-5715-4963-94BA-AF22151E9930"
+      }
+    ]
+  },
+  "wd:P137": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P121",
+        "start_date": "2019-02-21T02:00:04+00:00",
+        "end_date": "2019-02-21T14:00:38+00:00",
+        "constraint_id": "wds:P137-7151e48f-4a96-1e10-3fef-9eaee7909eb6"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1398": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P167",
+        "start_date": "2017-10-02T16:25:34+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1398-0d58b6af-4667-0eb6-0fd5-2ad232f37eea"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1403": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P12765",
+        "start_date": "2024-08-22T15:31:50+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1403-9f326e23-40b0-46c1-e641-f60e82352d44"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1420": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P12763",
+        "start_date": "2024-08-22T15:26:50+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1420-65ddd7bb-44af-7beb-742b-436d9f5181f8"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1423": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1424",
+        "start_date": "2017-07-13T00:56:16+00:00",
+        "end_date": "2018-04-01T06:15:39+00:00",
+        "constraint_id": "wds:P1423-441C6AA1-59E4-46C2-925D-6D8CC4CD072E"
+      },
+      {
+        "entity": "wd:P1424",
+        "start_date": "2018-06-23T19:51:24+00:00",
+        "end_date": "2021-02-04T15:49:56+00:00",
+        "constraint_id": "wds:P1423-934ce015-48cb-248e-81ff-388ac343077c"
+      },
+      {
+        "entity": "wd:P1424",
+        "start_date": "2024-09-29T16:28:08+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1423-356c76a8-4795-4401-3c64-a04336b085e9"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1424": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1423",
+        "start_date": "2017-07-16T15:12:13+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1424-44DB11D2-C0F5-4F99-A266-E4E4142442D9"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1434": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1445",
+        "start_date": "2017-07-13T00:54:54+00:00",
+        "end_date": "2025-01-30T06:15:46+00:00",
+        "constraint_id": "wds:P1434-BBBA526A-4D0E-417D-9B70-EBD29D4B17CE"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P144": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P4969",
+        "start_date": "2019-01-03T09:03:51+00:00",
+        "end_date": "2019-02-17T21:39:17+00:00",
+        "constraint_id": "wds:P144-86a71066-4ba2-3dc7-37ea-2c7f70c78add"
+      },
+      {
+        "entity": "wd:P4969",
+        "start_date": "2024-12-13T11:20:45+00:00",
+        "end_date": "2024-12-17T07:07:49+00:00",
+        "constraint_id": "wds:P144-7786a606-4906-0082-9174-ad694d86dc94"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1441": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P674",
+        "start_date": "2021-06-24T11:01:17+00:00",
+        "end_date": "2021-06-24T16:32:08+00:00",
+        "constraint_id": "wds:P1441-718413b5-4b45-3aaa-7c7b-02daf08360e6"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1445": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1434",
+        "start_date": "2017-07-13T00:47:16+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1445-50794C5C-EF0D-41B2-AFD2-AAA3A592003D"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1464": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P971",
+        "start_date": "2017-07-13T00:46:19+00:00",
+        "end_date": "2017-07-13T21:00:34+00:00",
+        "constraint_id": "wds:P1464-1A418CA7-A64F-47F4-AF56-531DE0C10A16"
+      },
+      {
+        "entity": "wd:P971",
+        "start_date": "2017-07-13T21:00:53+00:00",
+        "end_date": "2017-07-16T15:12:18+00:00",
+        "constraint_id": "wds:P1464-6677133B-E611-48A6-B3EC-13A4F9FD0C61"
+      },
+      {
+        "entity": "wd:P971",
+        "start_date": "2017-07-16T15:12:38+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1464-B8D20AE9-53FC-4A7C-9E9D-6B89870ED58F"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1465": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P971",
+        "start_date": "2017-07-13T00:45:44+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1465-6549D372-B19C-4C9B-B24A-EB173EAA5653"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1478": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1536",
+        "start_date": "2017-07-13T00:43:55+00:00",
+        "end_date": "2019-02-08T18:19:36+00:00",
+        "constraint_id": "wds:P1478-0A993E21-F67B-4D94-A9EF-0AF06F868118"
+      },
+      {
+        "entity": "wd:P1536",
+        "start_date": "2019-02-09T00:46:37+00:00",
+        "end_date": "2019-04-09T13:25:50+00:00",
+        "constraint_id": "wds:P1478-0A993E21-F67B-4D94-A9EF-0AF06F868118"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1479": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1537",
+        "start_date": "2017-07-13T00:43:52+00:00",
+        "end_date": "2019-02-08T18:19:48+00:00",
+        "constraint_id": "wds:P1479-F8B440AE-7C93-48FA-B357-1578CAE14871"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P150": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P131",
+        "start_date": "2017-07-05T15:57:49+00:00",
+        "end_date": "2017-07-13T07:07:51+00:00",
+        "constraint_id": "wds:P150-89f21184-4e69-06cb-82b1-0b3e1c222902"
+      },
+      {
+        "entity": "wd:P131",
+        "start_date": "2017-07-13T07:08:01+00:00",
+        "end_date": "2022-03-15T15:39:04+00:00",
+        "constraint_id": "wds:P150-28A64EB8-8771-4B16-91CD-44434AA42F27"
+      },
+      {
+        "entity": "wd:P5607",
+        "start_date": "2019-07-13T16:40:07+00:00",
+        "end_date": "2019-09-03T13:58:55+00:00",
+        "constraint_id": "wds:P150-28A64EB8-8771-4B16-91CD-44434AA42F27"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1535": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1547",
+        "start_date": "2018-10-10T16:12:42+00:00",
+        "end_date": "2019-01-05T02:40:47+00:00",
+        "constraint_id": "wds:P1535-27C5BE36-A0EA-4427-ACB5-BF9394370E2D"
+      },
+      {
+        "entity": "wd:P1547",
+        "start_date": "2019-01-05T02:40:44+00:00",
+        "end_date": "2019-01-09T21:46:22+00:00",
+        "constraint_id": "wds:P1535-64fdf1bf-4f49-d74a-d761-6b077cf30ce6"
+      },
+      {
+        "entity": "wd:P1547",
+        "start_date": "2019-01-09T21:46:17+00:00",
+        "end_date": "2019-01-27T21:56:26+00:00",
+        "constraint_id": "wds:P1535-27C5BE36-A0EA-4427-ACB5-BF9394370E2D"
+      },
+      {
+        "entity": "wd:P1547",
+        "start_date": "2019-01-27T21:56:21+00:00",
+        "end_date": "2019-01-29T21:21:05+00:00",
+        "constraint_id": "wds:P1535-f0a03338-4808-b01b-550f-21cedd901dee"
+      },
+      {
+        "entity": "wd:P2283",
+        "start_date": "2017-07-13T00:40:59+00:00",
+        "end_date": "2019-02-07T14:19:05+00:00",
+        "constraint_id": "wds:P1535-27C5BE36-A0EA-4427-ACB5-BF9394370E2D"
+      },
+      {
+        "entity": "wd:P2283",
+        "start_date": "2021-05-24T23:07:19+00:00",
+        "end_date": "2021-05-26T20:41:17+00:00",
+        "constraint_id": "wds:P1535-0d3e718a-4687-808b-b0e3-728ecf8ce37d"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1536": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1478",
+        "start_date": "2017-07-13T00:40:56+00:00",
+        "end_date": "2019-02-08T18:19:42+00:00",
+        "constraint_id": "wds:P1536-043683B3-F202-42D8-BE51-39EEE981C507"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1537": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1479",
+        "start_date": "2017-07-13T00:40:53+00:00",
+        "end_date": "2019-02-08T18:19:52+00:00",
+        "constraint_id": "wds:P1537-EC18F032-A848-4E19-A62A-AC744DD47996"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1542": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P828",
+        "start_date": "2017-07-13T00:40:24+00:00",
+        "end_date": "2019-02-08T18:19:32+00:00",
+        "constraint_id": "wds:P1542-263E8E38-F923-4206-BE58-8E3D634E336A"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P155": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P156",
+        "start_date": "2017-07-13T07:06:15+00:00",
+        "end_date": "2019-04-18T13:29:34+00:00",
+        "constraint_id": "wds:P155-E4B98E71-9794-40D5-9E32-1D7F8E8CC6FF"
+      },
+      {
+        "entity": "wd:P156",
+        "start_date": "2019-09-22T18:22:36+00:00",
+        "end_date": "2020-06-27T13:13:32+00:00",
+        "constraint_id": "wds:P155-8740369b-4bdd-eda6-2c00-da932130f029"
+      },
+      {
+        "entity": "wd:P156",
+        "start_date": "2020-06-27T13:17:59+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P155-8740369b-4bdd-eda6-2c00-da932130f029"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P156": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P155",
+        "start_date": "2017-07-13T07:06:20+00:00",
+        "end_date": "2019-04-18T13:29:39+00:00",
+        "constraint_id": "wds:P156-207BC560-60AE-44A2-B097-10876FEF092E"
+      },
+      {
+        "entity": "wd:P155",
+        "start_date": "2019-09-22T18:21:40+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P156-c75c6447-4ce2-299f-ea49-da634cfba387"
+      }
+    ],
+    "pq:P2303": [
+      {
+        "entity": "wd:Q1411020",
+        "start_date": "2022-03-07T15:01:03+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P156-c75c6447-4ce2-299f-ea49-da634cfba387"
+      }
+    ]
+  },
+  "wd:P1582": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1672",
+        "start_date": "2017-07-13T00:32:47+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1582-64F2B4A8-A012-43B4-806F-EAA0AD01BF7D"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1605": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1606",
+        "start_date": "2017-07-13T00:29:36+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1605-9B20D92C-A9F9-43F0-98E1-580B596C16DE"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1606": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1605",
+        "start_date": "2017-07-13T00:29:28+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1606-DDB9FD8F-7203-473E-8307-1B79CF8D65F0"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1629": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1687",
+        "start_date": "2017-07-13T00:24:58+00:00",
+        "end_date": "2019-11-10T16:38:03+00:00",
+        "constraint_id": "wds:P1629-ECC0DB28-2A01-4CEB-8E31-421CC710050C"
+      },
+      {
+        "entity": "wd:P1687",
+        "start_date": "2019-11-10T17:33:30+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1629-ECC0DB28-2A01-4CEB-8E31-421CC710050C"
+      },
+      {
+        "entity": "wd:P1963",
+        "start_date": "2019-11-10T16:30:09+00:00",
+        "end_date": "2019-11-10T16:31:20+00:00",
+        "constraint_id": "wds:P1629-ECC0DB28-2A01-4CEB-8E31-421CC710050C"
+      },
+      {
+        "entity": "wd:P1963",
+        "start_date": "2019-11-10T16:31:11+00:00",
+        "end_date": "2019-11-10T16:38:08+00:00",
+        "constraint_id": "wds:P1629-31fe5e3e-465d-e75a-6e22-5098fe8855e7"
+      }
+    ],
+    "pq:P2303": [
+      {
+        "entity": "wd:Q13406268",
+        "start_date": "2021-08-02T18:58:18+00:00",
+        "end_date": "2021-08-02T19:01:19+00:00",
+        "constraint_id": "wds:P1629-ECC0DB28-2A01-4CEB-8E31-421CC710050C"
+      },
+      {
+        "entity": "wd:Q15397819",
+        "start_date": "2021-08-02T18:58:27+00:00",
+        "end_date": "2021-08-02T19:01:19+00:00",
+        "constraint_id": "wds:P1629-ECC0DB28-2A01-4CEB-8E31-421CC710050C"
+      },
+      {
+        "entity": "wd:Q18720640",
+        "start_date": "2021-08-02T18:53:04+00:00",
+        "end_date": "2021-08-02T19:01:19+00:00",
+        "constraint_id": "wds:P1629-ECC0DB28-2A01-4CEB-8E31-421CC710050C"
+      },
+      {
+        "entity": "wd:Q4115189",
+        "start_date": "2021-08-02T18:58:09+00:00",
+        "end_date": "2021-08-02T19:01:19+00:00",
+        "constraint_id": "wds:P1629-ECC0DB28-2A01-4CEB-8E31-421CC710050C"
+      }
+    ]
+  },
+  "wd:P166": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1346",
+        "start_date": "2018-05-01T08:51:48+00:00",
+        "end_date": "2018-05-02T04:22:13+00:00",
+        "constraint_id": "wds:P166-b4359fd9-404c-9376-7b44-715427b6a902"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P167": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1398",
+        "start_date": "2017-10-02T16:23:15+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P167-2c56bb4e-4c40-e57d-cbe1-323821cf2d4c"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1696": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1696",
+        "start_date": "2017-07-05T15:55:13+00:00",
+        "end_date": "2017-07-13T00:15:05+00:00",
+        "constraint_id": "wds:P1696-08d2112e-43a1-ddd1-b9c1-5ef53bd3851d"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1740": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P971",
+        "start_date": "2017-07-13T00:07:20+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1740-C136094B-2380-47C1-BC26-95BD229708BA"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1753": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1754",
+        "start_date": "2017-07-13T00:04:08+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1753-69FC3185-EFCA-4F00-B3D8-8F09DE2AAD76"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1754": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1753",
+        "start_date": "2017-07-13T00:03:49+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1754-015956CB-8C8E-49C9-9E43-ABA092CEE6A7"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1791": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P971",
+        "start_date": "2017-07-12T23:59:22+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1791-00BC9837-E5F9-45BD-9D74-1FFCA50BE2C2"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1792": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P971",
+        "start_date": "2017-07-12T23:58:49+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1792-52227C28-8A83-4B56-987A-0449B150BAB0"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P184": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P185",
+        "start_date": "2017-07-13T07:07:42+00:00",
+        "end_date": "2020-01-29T12:59:59+00:00",
+        "constraint_id": "wds:P184-30DCAD78-F16D-49B6-8FD0-A1ED1A14B10E"
+      },
+      {
+        "entity": "wd:P185",
+        "start_date": "2020-01-29T13:24:48+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P184-30DCAD78-F16D-49B6-8FD0-A1ED1A14B10E"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P185": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P184",
+        "start_date": "2017-07-13T07:07:20+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P185-4CC0E455-2322-4E96-8670-EA25CB3839CA"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1885": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P708",
+        "start_date": "2017-07-12T23:43:08+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P1885-20A0A977-F13B-4950-9610-FFBB56C84DDC"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P1923": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1344",
+        "start_date": "2019-03-25T15:41:54+00:00",
+        "end_date": "2020-10-29T19:17:21+00:00",
+        "constraint_id": "wds:P1923-7e40d278-44f9-6362-59c6-82d27e81f0b0"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P195": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P126",
+        "start_date": "2023-11-04T20:29:22+00:00",
+        "end_date": "2023-11-04T20:45:29+00:00",
+        "constraint_id": "wds:P195-b1e2f5c8-468e-b823-d60f-5879063f5ac6"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P196": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P527",
+        "start_date": "2018-12-28T12:08:41+00:00",
+        "end_date": "2018-12-28T12:10:14+00:00",
+        "constraint_id": "wds:P196-11d34433-44a3-fbcb-3253-dddc7027b74f"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P197": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P197",
+        "start_date": "2018-06-23T16:21:05+00:00",
+        "end_date": "2018-06-23T16:31:19+00:00",
+        "constraint_id": "wds:P197-ce127873-4c1d-ff83-1164-513694a54a1f"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P200": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P469",
+        "start_date": "2018-07-19T13:11:04+00:00",
+        "end_date": "2018-08-01T06:46:53+00:00",
+        "constraint_id": "wds:P200-a63ecc5c-49ab-43ac-044d-f7e3975cf59e"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P201": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P469",
+        "start_date": "2017-07-13T07:03:42+00:00",
+        "end_date": "2017-12-30T17:53:04+00:00",
+        "constraint_id": "wds:P201-3FDD7D20-5BBB-43E8-9A46-6D742723BAAB"
+      },
+      {
+        "entity": "wd:P469",
+        "start_date": "2018-07-19T13:11:10+00:00",
+        "end_date": "2018-08-01T06:50:08+00:00",
+        "constraint_id": "wds:P201-AA833A0F-02B3-4040-957B-AC2C2D180729"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2175": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P2176",
+        "start_date": "2021-05-16T20:05:26+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P2175-da21b7c0-41a3-7c3f-bf4f-f1d9f2242dd9"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2176": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P2175",
+        "start_date": "2021-05-16T20:06:35+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P2176-77d6a48c-46e8-3bbe-c5fb-c307f17e3ec8"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2184": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1269",
+        "start_date": "2017-07-12T23:03:18+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P2184-882C80AF-3C0C-45D8-B6D6-60B2C532A533"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P22": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P40",
+        "start_date": "2017-07-13T05:16:39+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P22-4EE073BD-95A5-430A-814A-4FDB983AFB4A"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2283": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1535",
+        "start_date": "2017-07-12T22:52:59+00:00",
+        "end_date": "2018-05-17T13:40:38+00:00",
+        "constraint_id": "wds:P2283-FA4053CE-C79C-4BEA-99DE-FA237E33CD3D"
+      },
+      {
+        "entity": "wd:P1535",
+        "start_date": "2018-06-04T09:03:30+00:00",
+        "end_date": "2018-06-24T03:27:48+00:00",
+        "constraint_id": "wds:P2283-cacc476d-488d-cffe-cd89-9f2cb0b6e62e"
+      },
+      {
+        "entity": "wd:P1535",
+        "start_date": "2018-06-24T04:42:37+00:00",
+        "end_date": "2018-06-24T04:42:54+00:00",
+        "constraint_id": "wds:P2283-cacc476d-488d-cffe-cd89-9f2cb0b6e62e"
+      },
+      {
+        "entity": "wd:P1535",
+        "start_date": "2021-05-24T23:13:06+00:00",
+        "end_date": "2021-05-26T19:29:24+00:00",
+        "constraint_id": "wds:P2283-2bda2096-42c8-7147-73d5-54386410384a"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2293": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P2293",
+        "start_date": "2017-07-12T22:51:35+00:00",
+        "end_date": "2018-10-23T10:41:38+00:00",
+        "constraint_id": "wds:P2293-18705D45-563F-4B4C-8980-AD31080FF28F"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2354": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P360",
+        "start_date": "2017-10-07T17:17:34+00:00",
+        "end_date": "2017-10-07T17:31:18+00:00",
+        "constraint_id": "wds:P2354-6e1594e6-4659-f21b-5f11-b189ff285133"
+      },
+      {
+        "entity": "wd:P360",
+        "start_date": "2018-12-31T16:12:53+00:00",
+        "end_date": "2018-12-31T18:04:12+00:00",
+        "constraint_id": "wds:P2354-0a8614a3-4241-48d8-577d-c1b2c1c084be"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2375": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P2376",
+        "start_date": "2017-07-12T22:37:26+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P2375-694E056F-CA42-40BB-87A9-C5333BC59A70"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2376": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P2375",
+        "start_date": "2017-07-12T22:37:16+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P2376-12DBF970-922F-4068-A501-8A1369CC0B1A"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2388": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P2389",
+        "start_date": "2017-07-12T22:34:57+00:00",
+        "end_date": "2019-12-04T07:32:04+00:00",
+        "constraint_id": "wds:P2388-E8E4FF6A-EAEF-4E46-9465-19B6F82F4F3B"
+      },
+      {
+        "entity": "wd:P2389",
+        "start_date": "2019-12-04T07:35:09+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P2388-E8E4FF6A-EAEF-4E46-9465-19B6F82F4F3B"
+      }
+    ],
+    "pq:P2303": [
+      {
+        "entity": "wd:Q132050",
+        "start_date": "2025-02-15T09:34:14+00:00",
+        "end_date": "2025-02-15T12:48:23+00:00",
+        "constraint_id": "wds:P2388-E8E4FF6A-EAEF-4E46-9465-19B6F82F4F3B"
+      },
+      {
+        "entity": "wd:Q19940089",
+        "start_date": "2025-02-15T09:34:14+00:00",
+        "end_date": "2025-02-15T12:48:23+00:00",
+        "constraint_id": "wds:P2388-E8E4FF6A-EAEF-4E46-9465-19B6F82F4F3B"
+      },
+      {
+        "entity": "wd:Q285328",
+        "start_date": "2025-02-15T12:48:23+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P2388-E8E4FF6A-EAEF-4E46-9465-19B6F82F4F3B"
+      },
+      {
+        "entity": "wd:Q484876",
+        "start_date": "2025-02-15T09:34:14+00:00",
+        "end_date": "2025-02-15T12:48:23+00:00",
+        "constraint_id": "wds:P2388-E8E4FF6A-EAEF-4E46-9465-19B6F82F4F3B"
+      }
+    ]
+  },
+  "wd:P2389": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P2388",
+        "start_date": "2017-07-12T22:34:44+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P2389-8D906EBE-CEC1-4761-9030-2BF28704FBB0"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2499": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P2500",
+        "start_date": "2017-12-10T16:32:37+00:00",
+        "end_date": "2020-01-04T00:06:46+00:00",
+        "constraint_id": "wds:P2499-546df625-4fc7-e637-5660-b9ab2a812aec"
+      },
+      {
+        "entity": "wd:P2500",
+        "start_date": "2020-01-04T00:14:47+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P2499-546df625-4fc7-e637-5660-b9ab2a812aec"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P25": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P40",
+        "start_date": "2017-07-13T05:15:36+00:00",
+        "end_date": "2018-07-01T10:44:05+00:00",
+        "constraint_id": "wds:P25-D316BC69-95F8-4AAA-9EE8-2D80819D335E"
+      },
+      {
+        "entity": "wd:P40",
+        "start_date": "2018-07-01T12:59:11+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P25-D316BC69-95F8-4AAA-9EE8-2D80819D335E"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2500": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P2499",
+        "start_date": "2017-12-10T16:32:56+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P2500-64e84c3b-49fb-5c77-0e9a-54dff1bee719"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2502": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P2501",
+        "start_date": "2021-01-14T04:08:47+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P2502-431790ab-4ecd-5184-7bbc-11d8023b95bb"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2507": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P921",
+        "start_date": "2025-04-14T04:09:33+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P2507-1c7ed567-479f-4113-2731-5fc44317aad4"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2512": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P144",
+        "start_date": "2019-04-21T20:46:24+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P2512-0e39d96a-4625-6c30-3c12-527b113026bb"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2517": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P971",
+        "start_date": "2017-07-12T22:15:20+00:00",
+        "end_date": "2018-11-13T08:01:14+00:00",
+        "constraint_id": "wds:P2517-9D4B4561-3DA5-422D-8ACC-9F62C38AA78F"
+      },
+      {
+        "entity": "wd:P971",
+        "start_date": "2018-12-11T15:35:30+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P2517-9D4B4561-3DA5-422D-8ACC-9F62C38AA78F"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2522": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1346",
+        "start_date": "2017-07-12T22:13:57+00:00",
+        "end_date": "2019-03-31T09:59:41+00:00",
+        "constraint_id": "wds:P2522-3114A6F1-6C4B-4B14-9E49-7DFAAB5E2101"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2568": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P3148",
+        "start_date": "2021-05-05T05:28:32+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P2568-2064edbd-44ff-b4bb-0b5a-bcd0740f2d0e"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2578": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P2579",
+        "start_date": "2017-08-08T12:59:27+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P2578-c519e042-4890-d4e0-87c9-dcba0af7ea1c"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2579": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P2578",
+        "start_date": "2017-08-08T13:02:18+00:00",
+        "end_date": "2019-03-18T14:30:50+00:00",
+        "constraint_id": "wds:P2579-1130266b-425e-c358-aa6c-7caae383e6ad"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2670": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P361",
+        "start_date": "2018-05-21T23:17:50+00:00",
+        "end_date": "2018-06-29T08:22:39+00:00",
+        "constraint_id": "wds:P2670-1a79aa3f-4ee8-8e12-42d1-3a3c34277ee9"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2673": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P2674",
+        "start_date": "2017-07-12T21:55:02+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P2673-CC80D12A-19D5-410F-9D50-9DFD3EC9F3B5"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2674": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P2673",
+        "start_date": "2017-07-12T21:54:59+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P2674-50A76320-DBD0-4A41-AA5B-3FA6877435D5"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2681": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P2682",
+        "start_date": "2017-07-12T21:54:02+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P2681-E2B1E73B-9A19-4559-8E92-8CA62CBF3DE4"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2682": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P2681",
+        "start_date": "2017-07-12T21:53:55+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P2682-9AF861CB-217F-434A-9F37-1D12F2A07637"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P286": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P6087",
+        "start_date": "2019-03-11T13:24:10+00:00",
+        "end_date": "2019-09-09T16:45:15+00:00",
+        "constraint_id": "wds:P286-8e0229dd-47ec-9a7e-d08f-68d1f68d23bc"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P2875": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1659",
+        "start_date": "2017-08-14T08:10:53+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P2875-307819b4-4602-f41a-28f2-fd9913f04ffc"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P301": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P7782",
+        "start_date": "2024-10-03T11:23:20+00:00",
+        "end_date": "2024-12-18T06:06:54+00:00",
+        "constraint_id": "wds:P301-0EC7969D-436B-4365-B6B5-59454795403E"
+      },
+      {
+        "entity": "wd:P910",
+        "start_date": "2017-07-13T04:33:16+00:00",
+        "end_date": "2017-07-13T23:25:15+00:00",
+        "constraint_id": "wds:P301-15E54ACC-A33A-48D8-8128-62CCF4B6B3DA"
+      },
+      {
+        "entity": "wd:P910",
+        "start_date": "2017-07-13T23:25:21+00:00",
+        "end_date": "2017-07-16T17:18:58+00:00",
+        "constraint_id": "wds:P301-ABAF075A-3011-40F4-AF7D-0863A4FFA512"
+      },
+      {
+        "entity": "wd:P910",
+        "start_date": "2017-07-16T17:19:05+00:00",
+        "end_date": "2017-07-16T21:29:11+00:00",
+        "constraint_id": "wds:P301-83F3AC0A-919C-424F-A25E-EBBAC1C9859C"
+      },
+      {
+        "entity": "wd:P910",
+        "start_date": "2017-07-16T21:29:17+00:00",
+        "end_date": "2017-07-16T22:13:58+00:00",
+        "constraint_id": "wds:P301-A8A9A7BF-14F7-4803-82E1-70ED61BEFDDF"
+      },
+      {
+        "entity": "wd:P910",
+        "start_date": "2017-07-16T22:14:10+00:00",
+        "end_date": "2017-07-16T23:15:58+00:00",
+        "constraint_id": "wds:P301-39104E32-A70D-47AF-BECA-44D2D00D9D90"
+      },
+      {
+        "entity": "wd:P910",
+        "start_date": "2017-07-16T23:16:06+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P301-0EC7969D-436B-4365-B6B5-59454795403E"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P3095": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P425",
+        "start_date": "2020-05-13T02:03:30+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P3095-f2dbde60-49b9-d0fc-c894-a220a83c8d66"
+      }
+    ],
+    "pq:P2303": [
+      {
+        "entity": "wd:Q31629",
+        "start_date": "2022-08-17T19:40:16+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P3095-f2dbde60-49b9-d0fc-c894-a220a83c8d66"
+      }
+    ]
+  },
+  "wd:P3148": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P2568",
+        "start_date": "2017-07-12T20:51:24+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P3148-3B5868C1-F70F-470E-91CE-8A46721F4352"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P3189": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P3190",
+        "start_date": "2017-07-12T20:44:39+00:00",
+        "end_date": "2023-04-24T11:39:27+00:00",
+        "constraint_id": "wds:P3189-A27B4CE1-16F7-4C19-814C-38482FE31129"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P3190": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P3189",
+        "start_date": "2017-07-12T20:44:30+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P3190-27C3C31A-936A-487A-83B0-E5E57EE09D99"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P3261": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P3262",
+        "start_date": "2017-07-12T20:35:39+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P3261-325AE414-E673-4F56-B477-6D065713628F"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P3262": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P3261",
+        "start_date": "2017-07-12T20:35:33+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P3262-DA0DF0C3-457B-4D5F-B2DF-3198C3F613D9"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P3448": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1038",
+        "start_date": "2017-11-05T09:56:30+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P3448-2e0a588e-4705-0d43-59f8-da9892ca7ddb"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P355": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P749",
+        "start_date": "2017-07-13T05:02:06+00:00",
+        "end_date": "2020-06-17T21:24:25+00:00",
+        "constraint_id": "wds:P355-A47B854D-BCC1-4555-8BEF-E7883F7B08FA"
+      },
+      {
+        "entity": "wd:P749",
+        "start_date": "2020-06-17T21:25:06+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P355-A47B854D-BCC1-4555-8BEF-E7883F7B08FA"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P36": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1376",
+        "start_date": "2017-07-05T15:51:51+00:00",
+        "end_date": "2017-07-13T04:56:52+00:00",
+        "constraint_id": "wds:P36-63e357fe-4a80-016f-f01e-2c292cc34229"
+      },
+      {
+        "entity": "wd:P1376",
+        "start_date": "2017-07-13T04:57:00+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P36-BA43C084-59BD-4BDB-8F14-4F76411C6FC2"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P360": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P2354",
+        "start_date": "2017-10-07T17:17:15+00:00",
+        "end_date": "2017-10-07T17:30:36+00:00",
+        "constraint_id": "wds:P360-6ee4071c-4baa-df29-5da0-08e361bb11fe"
+      },
+      {
+        "entity": "wd:P2354",
+        "start_date": "2018-12-31T16:12:18+00:00",
+        "end_date": "2018-12-31T18:06:15+00:00",
+        "constraint_id": "wds:P360-270168ce-46b0-9d31-f40b-d8ced373cf90"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P3602": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P726",
+        "start_date": "2017-12-18T09:03:10+00:00",
+        "end_date": "2018-04-13T13:28:01+00:00",
+        "constraint_id": "wds:P3602-2a6035c7-4463-309d-b38d-10b39f11dfb7"
+      },
+      {
+        "entity": "wd:P726",
+        "start_date": "2020-04-14T00:17:57+00:00",
+        "end_date": "2020-04-18T00:24:35+00:00",
+        "constraint_id": "wds:P3602-bc830c5d-4423-c6a1-2422-d4df54137368"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P361": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P2670",
+        "start_date": "2018-05-21T23:17:58+00:00",
+        "end_date": "2018-05-22T00:33:17+00:00",
+        "constraint_id": "wds:P361-597eada5-4087-e761-4d63-131c46ae7651"
+      },
+      {
+        "entity": "wd:P527",
+        "start_date": "2017-07-13T05:02:23+00:00",
+        "end_date": "2017-12-25T16:15:08+00:00",
+        "constraint_id": "wds:P361-6B22322B-4145-4509-8C17-6DF42AB47C4C"
+      },
+      {
+        "entity": "wd:P527",
+        "start_date": "2017-12-25T16:22:46+00:00",
+        "end_date": "2018-05-17T16:53:13+00:00",
+        "constraint_id": "wds:P361-6B22322B-4145-4509-8C17-6DF42AB47C4C"
+      },
+      {
+        "entity": "wd:P527",
+        "start_date": "2018-05-22T00:33:17+00:00",
+        "end_date": "2018-06-25T17:20:19+00:00",
+        "constraint_id": "wds:P361-597eada5-4087-e761-4d63-131c46ae7651"
+      },
+      {
+        "entity": "wd:P527",
+        "start_date": "2021-05-16T05:01:03+00:00",
+        "end_date": "2021-05-16T07:27:18+00:00",
+        "constraint_id": "wds:P361-ff9f1883-4316-e267-bd27-d6970abdee9d"
+      },
+      {
+        "entity": "wd:P527",
+        "start_date": "2021-05-16T07:44:42+00:00",
+        "end_date": "2021-05-16T07:47:41+00:00",
+        "constraint_id": "wds:P361-ff9f1883-4316-e267-bd27-d6970abdee9d"
+      }
+    ],
+    "pq:P2303": [
+      {
+        "entity": "wd:Q1059324",
+        "start_date": "2018-04-22T09:41:53+00:00",
+        "end_date": "2018-05-17T16:53:13+00:00",
+        "constraint_id": "wds:P361-6B22322B-4145-4509-8C17-6DF42AB47C4C"
+      },
+      {
+        "entity": "wd:Q1436963",
+        "start_date": "2018-04-22T09:48:54+00:00",
+        "end_date": "2018-05-17T16:53:13+00:00",
+        "constraint_id": "wds:P361-6B22322B-4145-4509-8C17-6DF42AB47C4C"
+      }
+    ]
+  },
+  "wd:P369": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P17",
+        "start_date": "2015-11-21T13:04:25+00:00",
+        "end_date": "2017-07-13T05:01:34+00:00",
+        "constraint_id": "wds:P369-dc487a90-4702-dc21-94c4-ce2b4d1d049c"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P370": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P31",
+        "start_date": "2017-06-30T20:05:49+00:00",
+        "end_date": "2017-07-13T05:01:25+00:00",
+        "constraint_id": "wds:P370-50df954a-4d79-ed4d-92d8-9ac9aca494c6"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P3709": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1659",
+        "start_date": "2017-08-02T10:27:13+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P3709-C302D8D5-FD22-4C09-823B-0D4570255FCE"
+      },
+      {
+        "entity": "wd:P1687",
+        "start_date": "2017-07-12T19:36:25+00:00",
+        "end_date": "2017-08-02T10:27:13+00:00",
+        "constraint_id": "wds:P3709-C302D8D5-FD22-4C09-823B-0D4570255FCE"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P3713": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1659",
+        "start_date": "2017-07-12T19:35:55+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P3713-9EA13ACE-63EC-4EC3-B2F8-3535981517D8"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P3780": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P3781",
+        "start_date": "2018-01-07T12:49:39+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P3780-ef99d45a-4f59-57ae-1520-ffc5ea14a87e"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P3781": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P3780",
+        "start_date": "2018-01-07T12:48:57+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P3781-aad9062e-4044-94b5-6ee3-03ab3d6f9fc1"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P3816": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P921",
+        "start_date": "2017-07-12T19:22:41+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P3816-65D191A8-2FBA-4131-AC5C-5E8296B032AB"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P3876": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P971",
+        "start_date": "2017-07-12T19:16:22+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P3876-6080D512-3E5D-4B39-9771-73C88B812CB4"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P397": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P398",
+        "start_date": "2017-07-13T04:56:14+00:00",
+        "end_date": "2020-12-08T09:34:13+00:00",
+        "constraint_id": "wds:P397-7F0BE737-E8F0-48A1-A1C8-DB60743C8390"
+      }
+    ],
+    "pq:P2303": [
+      {
+        "entity": "wd:Q525",
+        "start_date": "2019-10-23T03:20:38+00:00",
+        "end_date": "2020-12-08T09:34:13+00:00",
+        "constraint_id": "wds:P397-7F0BE737-E8F0-48A1-A1C8-DB60743C8390"
+      }
+    ]
+  },
+  "wd:P398": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P397",
+        "start_date": "2017-07-13T04:56:01+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P398-D330BDAB-3B30-4699-817F-C1CAA4A100CA"
+      }
+    ],
+    "pq:P2303": [
+      {
+        "entity": "wd:Q634",
+        "start_date": "2023-12-10T08:50:54+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P398-D330BDAB-3B30-4699-817F-C1CAA4A100CA"
+      }
+    ]
+  },
+  "wd:P40": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P22",
+        "start_date": "2021-08-30T00:52:08+00:00",
+        "end_date": "2021-08-30T00:54:57+00:00",
+        "constraint_id": "wds:P40-e1a138d8-4e4c-5ab9-6f90-22bd782d4e88"
+      },
+      {
+        "entity": "wd:P25",
+        "start_date": "2021-08-30T00:52:08+00:00",
+        "end_date": "2021-08-30T00:53:43+00:00",
+        "constraint_id": "wds:P40-e1a138d8-4e4c-5ab9-6f90-22bd782d4e88"
+      },
+      {
+        "entity": "wd:P25",
+        "start_date": "2021-08-30T00:53:59+00:00",
+        "end_date": "2021-08-30T00:54:57+00:00",
+        "constraint_id": "wds:P40-aa718f02-4a7c-6654-0127-f75f23b66aef"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P403": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P200",
+        "start_date": "2018-02-01T12:44:17+00:00",
+        "end_date": "2018-04-02T10:33:41+00:00",
+        "constraint_id": "wds:P403-2f44b118-41d7-bcfc-e75b-4fabb8af06fa"
+      },
+      {
+        "entity": "wd:P200",
+        "start_date": "2018-06-28T16:10:39+00:00",
+        "end_date": "2018-07-04T21:53:25+00:00",
+        "constraint_id": "wds:P403-162da11f-426d-cdd4-9063-60badc9109ed"
+      },
+      {
+        "entity": "wd:P200",
+        "start_date": "2018-07-04T21:53:22+00:00",
+        "end_date": "2018-07-19T13:07:51+00:00",
+        "constraint_id": "wds:P403-89569d6f-4ca3-9b6f-af91-173625224277"
+      },
+      {
+        "entity": "wd:P403",
+        "start_date": "2018-02-01T13:18:57+00:00",
+        "end_date": "2018-02-01T13:19:19+00:00",
+        "constraint_id": "wds:P403-2f44b118-41d7-bcfc-e75b-4fabb8af06fa"
+      },
+      {
+        "entity": "wd:P974",
+        "start_date": "2018-02-01T13:19:19+00:00",
+        "end_date": "2018-03-09T20:03:35+00:00",
+        "constraint_id": "wds:P403-2f44b118-41d7-bcfc-e75b-4fabb8af06fa"
+      },
+      {
+        "entity": "wd:P974",
+        "start_date": "2018-03-09T20:03:25+00:00",
+        "end_date": "2018-07-19T13:07:52+00:00",
+        "constraint_id": "wds:P403-162da11f-426d-cdd4-9063-60badc9109ed"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P4147": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P4149",
+        "start_date": "2017-08-07T11:37:28+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P4147-994346ef-42d0-fbc7-e588-9ed70b3daa35"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P4149": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P4147",
+        "start_date": "2017-08-07T11:36:56+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P4149-8f3f08a7-4a19-e29f-e99b-8bdef564340f"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P4195": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P108",
+        "start_date": "2017-09-06T10:48:53+00:00",
+        "end_date": "2017-09-06T10:49:38+00:00",
+        "constraint_id": "wds:P4195-b2567ff7-46c2-7bb8-13de-58d170ab9ae6"
+      },
+      {
+        "entity": "wd:P971",
+        "start_date": "2017-09-06T11:10:59+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P4195-e766e15a-4fa2-1d09-6039-f25a3169356a"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P425": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P3095",
+        "start_date": "2017-07-14T09:29:48+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P425-e9ae1059-40a8-ce62-90e6-1f76815fe3d0"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P427": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P13478",
+        "start_date": "2025-04-26T05:56:57+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P427-742fc365-45d3-5697-754f-11b28e992b1f"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P4329": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P9926",
+        "start_date": "2023-09-18T00:06:40+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P4329-df047ff0-4b03-c340-b447-ab235fb19ffe"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P4599": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P4600",
+        "start_date": "2017-11-30T21:57:45+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P4599-f41a096a-4ab3-85bd-ab22-ace682d9a57e"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P4600": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P4599",
+        "start_date": "2017-11-30T21:52:35+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P4600-8c581d1e-4d05-6b51-7c40-e12a6458221a"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P4622": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1027",
+        "start_date": "2017-12-08T16:22:30+00:00",
+        "end_date": "2017-12-08T16:23:40+00:00",
+        "constraint_id": "wds:P4622-ca975e4b-4fed-c04b-9189-70f3f5dbba05"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P4661": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P912",
+        "start_date": "2017-12-16T18:38:12+00:00",
+        "end_date": "2017-12-20T19:32:34+00:00",
+        "constraint_id": "wds:P4661-9b9c6fb6-4b1c-7abe-d62d-fc53c8582b16"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P469": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P200",
+        "start_date": "2017-12-22T23:22:07+00:00",
+        "end_date": "2018-02-01T12:42:28+00:00",
+        "constraint_id": "wds:P469-3c00becc-412c-7df5-0c6e-c0297bd055ca"
+      },
+      {
+        "entity": "wd:P201",
+        "start_date": "2017-12-22T23:22:24+00:00",
+        "end_date": "2018-02-01T12:43:33+00:00",
+        "constraint_id": "wds:P469-89c8869c-43bf-8d23-3b1e-8b35a56084c5"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P4843": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P927",
+        "start_date": "2018-02-16T00:38:20+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P4843-f4025a03-42be-5f7a-ec7f-3b523a47b75b"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P488": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P39",
+        "start_date": "2023-07-05T16:30:11+00:00",
+        "end_date": "2023-07-05T16:30:38+00:00",
+        "constraint_id": "wds:P488-6ca06376-4715-205f-11c4-52b61bb2950f"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P4969": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P144",
+        "start_date": "2019-01-03T09:03:19+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P4969-e244bb16-4e97-08b7-1ac6-f6b2af211393"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P5096": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1029",
+        "start_date": "2018-09-07T18:38:06+00:00",
+        "end_date": "2018-09-19T21:03:03+00:00",
+        "constraint_id": "wds:P5096-8ca1b0a2-4314-c529-e331-badf2e016775"
+      },
+      {
+        "entity": "wd:P1029",
+        "start_date": "2022-11-06T00:16:52+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P5096-dc264fc6-48ef-157a-ed54-9ef91e7a7270"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P5131": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P5132",
+        "start_date": "2018-05-06T18:35:00+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P5131-7f713a06-496c-1a47-9fd3-5d8bb306f9ea"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P5132": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P5131",
+        "start_date": "2018-05-06T18:38:57+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P5132-72b3af6e-4b5b-989e-fb77-8137407dc353"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P5133": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P5134",
+        "start_date": "2018-05-06T18:42:49+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P5133-cf995f3b-44f0-0d02-2f28-c38c1a3dbb2f"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P5134": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P5133",
+        "start_date": "2018-05-06T18:47:22+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P5134-77e718d2-4ae5-0056-8e72-37a1e370162a"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P5135": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P5136",
+        "start_date": "2024-09-21T13:16:46+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P5135-e46b3719-4095-f7ca-c4de-15304f507a15"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P5136": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P5135",
+        "start_date": "2024-09-21T13:17:12+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P5136-2234296d-4cbd-2d55-291e-814b113a7546"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P5206": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P407",
+        "start_date": "2018-05-27T09:58:03+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P5206-369C9969-5B57-4E36-AD7E-3629E2C295CB"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P566": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P12766",
+        "start_date": "2024-06-10T18:15:55+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P566-9b0dcf7f-45cf-4f10-3653-c33befc64f56"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P567": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P568",
+        "start_date": "2017-07-13T03:46:07+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P567-CBB0566D-1C3E-4C8D-AB0A-DFB71CC55F25"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P568": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P567",
+        "start_date": "2017-07-13T03:46:10+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P568-6A30D855-4BAE-49FA-AAC4-0F2D659C722B"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P571": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P576",
+        "start_date": "2019-06-08T08:14:56+00:00",
+        "end_date": "2019-06-08T08:26:20+00:00",
+        "constraint_id": "wds:P571-f01febf1-4053-ff27-1171-2e3d7041ee36"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P576": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P571",
+        "start_date": "2019-06-08T08:17:20+00:00",
+        "end_date": "2019-06-08T08:28:14+00:00",
+        "constraint_id": "wds:P576-2bda5208-4ed1-1e8c-13c3-95f42e867205"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P598": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P4791",
+        "start_date": "2021-05-19T14:47:35+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P598-ba3487ce-4138-f9b1-eabb-1e2fa5c2282a"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P5996": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P971",
+        "start_date": "2018-10-25T04:51:43+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P5996-3ba2cb72-412e-eb12-4920-4b3cc445e3d3"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P6087": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P286",
+        "start_date": "2019-03-11T13:23:32+00:00",
+        "end_date": "2019-05-16T05:05:10+00:00",
+        "constraint_id": "wds:P6087-bca89add-426c-68e2-b986-01f9919469a9"
+      },
+      {
+        "entity": "wd:P286",
+        "start_date": "2019-06-11T10:32:19+00:00",
+        "end_date": "2019-10-15T21:48:06+00:00",
+        "constraint_id": "wds:P6087-12872d1f-479b-6e67-59e2-8651b01e46eb"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P6112": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P971",
+        "start_date": "2019-03-30T13:42:34+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P6112-3de58921-48b8-bb56-55e8-972ce01397a4"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P629": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P747",
+        "start_date": "2017-07-13T03:01:27+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P629-46A8A8E4-1ED3-4AF6-A405-0D69F57380F7"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P634": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P54",
+        "start_date": "2017-07-13T03:00:09+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P634-121829C4-7B25-483C-BC12-B322D49B57D0"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P658": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1433",
+        "start_date": "2023-10-08T19:26:17+00:00",
+        "end_date": "2023-10-08T19:43:45+00:00",
+        "constraint_id": "wds:P658-74b068f1-46fc-f004-0e0b-4ee080589265"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P674": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1441",
+        "start_date": "2017-07-13T02:52:30+00:00",
+        "end_date": "2019-05-21T16:05:33+00:00",
+        "constraint_id": "wds:P674-C6B7A309-ABC5-4D1A-92F2-A2B9E4675F0D"
+      },
+      {
+        "entity": "wd:P3831",
+        "start_date": "2018-11-20T15:11:53+00:00",
+        "end_date": "2018-12-05T10:10:10+00:00",
+        "constraint_id": "wds:P674-C6B7A309-ABC5-4D1A-92F2-A2B9E4675F0D"
+      }
+    ],
+    "pq:P2303": [
+      {
+        "entity": "wd:Q1405",
+        "start_date": "2017-07-13T02:52:32+00:00",
+        "end_date": "2019-05-21T16:05:33+00:00",
+        "constraint_id": "wds:P674-C6B7A309-ABC5-4D1A-92F2-A2B9E4675F0D"
+      },
+      {
+        "entity": "wd:Q37085",
+        "start_date": "2017-07-13T02:52:32+00:00",
+        "end_date": "2019-05-21T16:05:33+00:00",
+        "constraint_id": "wds:P674-C6B7A309-ABC5-4D1A-92F2-A2B9E4675F0D"
+      },
+      {
+        "entity": "wd:Q377",
+        "start_date": "2017-07-13T02:52:31+00:00",
+        "end_date": "2019-05-21T16:05:33+00:00",
+        "constraint_id": "wds:P674-C6B7A309-ABC5-4D1A-92F2-A2B9E4675F0D"
+      }
+    ]
+  },
+  "wd:P688": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P702",
+        "start_date": "2017-07-13T02:50:28+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P688-19340D17-8318-4076-B32B-5CD256E9B691"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P694": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P12764",
+        "start_date": "2024-06-10T18:22:40+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P694-ee92ac85-4a88-7d49-83c6-f58d582ee8a6"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P7018": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P5137",
+        "start_date": "2020-08-03T17:52:36+00:00",
+        "end_date": "2020-11-20T20:25:28+00:00",
+        "constraint_id": "wds:P7018-4e262c6d-4ecb-6777-78b6-b0cb1056d5d5"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P7084": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P971",
+        "start_date": "2019-07-30T18:19:05+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P7084-47924d8e-4da3-6582-f3fd-62960fb27284"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P710": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1344",
+        "start_date": "2017-07-13T02:45:18+00:00",
+        "end_date": "2018-08-22T00:17:56+00:00",
+        "constraint_id": "wds:P710-0F888BC1-B7BE-4EA0-BCFA-9CC3DB180DC6"
+      },
+      {
+        "entity": "wd:P607",
+        "start_date": "2018-01-23T13:32:46+00:00",
+        "end_date": "2018-01-23T13:33:23+00:00",
+        "constraint_id": "wds:P710-0F888BC1-B7BE-4EA0-BCFA-9CC3DB180DC6"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P726": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P3602",
+        "start_date": "2020-04-14T00:17:32+00:00",
+        "end_date": "2020-04-18T17:26:23+00:00",
+        "constraint_id": "wds:P726-bcb3c1e4-4c17-ece4-8196-4fa512238ca6"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P747": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P629",
+        "start_date": "2017-07-13T02:36:59+00:00",
+        "end_date": "2023-02-23T09:45:55+00:00",
+        "constraint_id": "wds:P747-03F97329-5467-4177-81DA-C6DC33394E35"
+      },
+      {
+        "entity": "wd:P629",
+        "start_date": "2024-09-24T15:52:01+00:00",
+        "end_date": "2025-01-13T09:29:59+00:00",
+        "constraint_id": "wds:P747-4fc27c08-4119-77da-effe-1e3c27699882"
+      },
+      {
+        "entity": "wd:P629",
+        "start_date": "2025-01-13T09:30:32+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P747-4fc27c08-4119-77da-effe-1e3c27699882"
+      },
+      {
+        "entity": "wd:P9745",
+        "start_date": "2021-10-12T15:43:41+00:00",
+        "end_date": "2021-10-14T15:40:48+00:00",
+        "constraint_id": "wds:P747-03F97329-5467-4177-81DA-C6DC33394E35"
+      },
+      {
+        "entity": "wd:P9831",
+        "start_date": "2025-01-13T09:07:56+00:00",
+        "end_date": "2025-01-13T09:11:58+00:00",
+        "constraint_id": "wds:P747-4fc27c08-4119-77da-effe-1e3c27699882"
+      },
+      {
+        "entity": "wd:P9831",
+        "start_date": "2025-01-13T09:13:58+00:00",
+        "end_date": "2025-01-13T09:17:02+00:00",
+        "constraint_id": "wds:P747-4fc27c08-4119-77da-effe-1e3c27699882"
+      },
+      {
+        "entity": "wd:P9831",
+        "start_date": "2025-01-13T09:31:18+00:00",
+        "end_date": "2025-01-13T09:32:16+00:00",
+        "constraint_id": "wds:P747-da040e8d-45fb-72cb-36b4-f0fb06033840"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P749": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P355",
+        "start_date": "2017-07-13T02:36:47+00:00",
+        "end_date": "2022-08-10T16:17:34+00:00",
+        "constraint_id": "wds:P749-E262948D-6024-4F94-AEAD-1608C901DD6A"
+      },
+      {
+        "entity": "wd:P4379",
+        "start_date": "2019-12-01T21:11:40+00:00",
+        "end_date": "2020-01-30T20:09:56+00:00",
+        "constraint_id": "wds:P749-E262948D-6024-4F94-AEAD-1608C901DD6A"
+      },
+      {
+        "entity": "wd:P4379",
+        "start_date": "2020-01-30T20:09:54+00:00",
+        "end_date": "2020-01-31T11:57:11+00:00",
+        "constraint_id": "wds:P749-dff90987-43cc-c690-6f36-2cd6b8c7968b"
+      },
+      {
+        "entity": "wd:P4379",
+        "start_date": "2020-01-31T11:57:11+00:00",
+        "end_date": "2020-03-18T20:01:41+00:00",
+        "constraint_id": "wds:P749-E262948D-6024-4F94-AEAD-1608C901DD6A"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P7561": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P971",
+        "start_date": "2019-11-16T10:43:42+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P7561-0e1d82d5-4b0d-5d7e-5c62-79fd101b37ad"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P7782": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P971",
+        "start_date": "2021-08-30T22:15:26+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P7782-2429eea3-4e40-8764-19b5-a32364b9b231"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P802": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1066",
+        "start_date": "2017-07-13T02:24:59+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P802-5F7188CB-03BF-45EC-B1D3-1A9087B29E6D"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P828": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P1542",
+        "start_date": "2017-07-13T02:20:51+00:00",
+        "end_date": "2019-02-08T18:19:27+00:00",
+        "constraint_id": "wds:P828-62F54D3C-AAD2-49E3-8537-313238577135"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P8530": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P10822",
+        "start_date": "2023-01-27T17:12:22+00:00",
+        "end_date": "2023-01-27T17:16:10+00:00",
+        "constraint_id": "wds:P8530-5B14FEF1-F9E7-42FB-A82B-815EF35BB6C8"
+      },
+      {
+        "entity": "wd:P8530",
+        "start_date": "2023-01-27T17:16:10+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P8530-5B14FEF1-F9E7-42FB-A82B-815EF35BB6C8"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P8596": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P971",
+        "start_date": "2020-09-13T16:43:32+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P8596-954c9484-4b16-fe51-a5ee-f18b7862e242"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P8625": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P921",
+        "start_date": "2020-10-26T18:44:36+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P8625-e2eeab83-43e2-5e18-1483-c2ace2219bc4"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P885": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P201",
+        "start_date": "2018-02-01T12:43:26+00:00",
+        "end_date": "2018-05-19T06:26:45+00:00",
+        "constraint_id": "wds:P885-835520ab-4502-6efb-4995-d4b39586b177"
+      },
+      {
+        "entity": "wd:P4552",
+        "start_date": "2018-05-18T08:44:39+00:00",
+        "end_date": "2018-05-19T06:24:18+00:00",
+        "constraint_id": "wds:P885-835520ab-4502-6efb-4995-d4b39586b177"
+      },
+      {
+        "entity": "wd:P4552",
+        "start_date": "2018-05-19T06:24:16+00:00",
+        "end_date": "2018-05-19T06:26:47+00:00",
+        "constraint_id": "wds:P885-fd61bd1e-43d6-83e5-a7cd-82a792c24780"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P8933": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P971",
+        "start_date": "2020-12-07T22:18:39+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P8933-E45EA078-E917-46F8-9587-4406CE9CBCDD"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P910": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P301",
+        "start_date": "2017-07-13T02:08:24+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P910-87F11688-D962-490C-B67C-627142687E18"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P9241": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P276",
+        "start_date": "2021-03-02T17:07:00+00:00",
+        "end_date": "2023-09-21T20:30:26+00:00",
+        "constraint_id": "wds:P9241-592753B2-BB1C-4C24-9693-2200A227F151"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P925": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P926",
+        "start_date": "2017-07-13T02:05:43+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P925-84C62815-1B61-4283-A406-D1EEFE118732"
+      }
+    ],
+    "pq:P2303": []
+  },
+  "wd:P926": {
+    "constraint_kind": "inverse",
+    "pq:P2306": [
+      {
+        "entity": "wd:P925",
+        "start_date": "2017-07-13T02:05:38+00:00",
+        "end_date": null,
+        "constraint_id": "wds:P926-8C5673D2-F951-4A0E-9423-48013235C7C7"
+      }
+    ],
+    "pq:P2303": []
+  }
+}
