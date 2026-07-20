@@ -1,3 +1,7 @@
+# Note to ISWC poster
+
+This repository was submitted in private, as part of the experiments listed here were not included in the poster submission. An open version will be released upon acceptance.
+
 # Wikidata Statements Lifecycle Machine
 
 Utilities for extracting the lifecycle of Wikidata RDF-like statements from
