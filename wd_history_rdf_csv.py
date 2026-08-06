@@ -7,9 +7,13 @@ for each valid entity revision, and writes one row for every interval in which a
 triple is active. Intervals are [cdate, ddate): a triple is active from the
 creation revision until immediately before the deletion revision.
 
+Supported Wikidata entity namespaces are explicit: 0 (items), 120
+(properties), and 146 (lexemes). Pages in other namespaces are skipped before
+revision text is interpreted as Wikibase JSON.
+
 Timing notes for metrics:
 - xml_iteration_seconds measures time spent advancing the streaming XML parser.
-- json_parsing_seconds measures HTML unescaping and JSON decoding of revision text.
+- json_parsing_seconds measures JSON decoding of revision text.
 - triple_extraction_seconds measures conversion from entity JSON to triple sets.
 - delta_computation_seconds measures set-delta construction and active-state updates.
 - csv_writing_seconds measures csv.writer row writes.
@@ -23,7 +27,6 @@ import argparse
 import bz2
 import csv
 import gzip
-import html
 import io
 import json
 import os
@@ -33,25 +36,35 @@ import time
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
-from typing import Dict, Iterable, Optional, Set, Tuple
+from typing import Dict, Iterable, Optional, Sequence, Set, Tuple
 
 MW_NS = "{http://www.mediawiki.org/xml/export-0.11/}"
 SCHEMA_VERSION = "2.0.0"
+SUPPORTED_ENTITY_NAMESPACES = {"0", "120", "146"}
 
-LIFECYCLE_HEADER = [
+LEGACY_HEADER = ["s", "p", "o", "cdate", "cuser", "ddate", "duser"]
+EXTENDED_HEADER = LEGACY_HEADER + [
     "entity_id",
     "page_id",
+    "crevid",
+    "cparentid",
+    "drevid",
+    "dparentid",
+    "source_shard",
+    "schema_version",
+    "quality_flags",
+]
+EVENT_HEADER = [
+    "entity_id",
+    "page_id",
+    "revision_id",
+    "parent_revision_id",
+    "timestamp",
+    "contributor",
+    "action",
     "s",
     "p",
     "o",
-    "cdate",
-    "crevid",
-    "cparentid",
-    "cuser",
-    "ddate",
-    "drevid",
-    "dparentid",
-    "duser",
     "source_shard",
     "schema_version",
     "quality_flags",
@@ -94,9 +107,42 @@ def atomic_publish_file(tmp_path: str, final_path: str) -> None:
     os.replace(tmp_path, final_path)
 
 
+class AtomicTextWriter:
+    def __init__(self, path: Optional[str], newline: str = ""):
+        self.path = path
+        self.newline = newline
+        self.tmp_path: Optional[str] = None
+        self.handle: Optional[io.TextIOWrapper] = None
+
+    def __enter__(self) -> Optional[io.TextIOWrapper]:
+        if not self.path:
+            return None
+        directory = os.path.dirname(os.path.abspath(self.path)) or "."
+        os.makedirs(directory, exist_ok=True)
+        fd, tmp_path = tempfile.mkstemp(prefix=f".{os.path.basename(self.path)}.", suffix=".tmp", dir=directory)
+        self.tmp_path = tmp_path
+        self.handle = os.fdopen(fd, "w", encoding="utf-8", newline=self.newline)
+        return self.handle
+
+    def __exit__(self, exc_type, exc, tb) -> None:
+        if self.handle is not None:
+            self.handle.close()
+            self.handle = None
+        if not self.path or not self.tmp_path:
+            return
+        if exc_type is None:
+            atomic_publish_file(self.tmp_path, self.path)
+        else:
+            try:
+                os.unlink(self.tmp_path)
+            except OSError:
+                pass
+        self.tmp_path = None
+
+
 # --------- Metrics and errors ---------
 
-def new_metrics(input_path: str, output_path: str) -> dict:
+def new_metrics(input_path: str, output_path: str, output_schema: str, emit_events: bool, events_output: Optional[str]) -> dict:
     input_bytes = 0
     try:
         input_bytes = os.path.getsize(input_path)
@@ -105,6 +151,8 @@ def new_metrics(input_path: str, output_path: str) -> dict:
 
     return {
         "schema_version": SCHEMA_VERSION,
+        "output_schema": output_schema,
+        "emit_events": emit_events,
         "input_path": input_path,
         "input_basename": os.path.basename(input_path),
         "input_compressed_bytes": input_bytes,
@@ -122,17 +170,21 @@ def new_metrics(input_path: str, output_path: str) -> dict:
         "pages_seen": 0,
         "pages_processed": 0,
         "pages_without_title": 0,
+        "pages_skipped_non_entity_namespace": 0,
         "revisions_seen": 0,
         "revisions_with_valid_entity_json": 0,
         "revisions_missing_text": 0,
         "revisions_with_empty_text": 0,
         "revisions_with_invalid_json": 0,
         "revisions_with_non_object_json": 0,
+        "revisions_with_unknown_json_structure": 0,
         "revisions_missing_id": 0,
-        "revisions_missing_entity_id": 0,
         "revisions_missing_timestamp": 0,
         "revisions_missing_contributor": 0,
+        "revisions_skipped_non_entity_namespace": 0,
         "entity_id_mismatches": 0,
+        "redirect_revisions": 0,
+        "redirect_entity_mismatches": 0,
         "triples_extracted_total": 0,
         "triple_add_events": 0,
         "triple_delete_events": 0,
@@ -140,6 +192,11 @@ def new_metrics(input_path: str, output_path: str) -> dict:
         "open_lifecycle_rows": 0,
         "warnings": 0,
         "errors": 0,
+        "event_output_path": events_output if emit_events else None,
+        "event_output_bytes": 0,
+        "event_output_rows": 0,
+        "event_add_rows": 0,
+        "event_delete_rows": 0,
         "completed_successfully": True,
     }
 
@@ -172,6 +229,7 @@ class ErrorLogger:
         parent_revision_id: str = "",
         timestamp: str = "",
         contributor: str = "",
+        json_keys: Optional[Sequence[str]] = None,
     ) -> None:
         if level == "error":
             self.metrics["errors"] += 1
@@ -191,6 +249,8 @@ class ErrorLogger:
             "timestamp": timestamp,
             "contributor": contributor,
         }
+        if json_keys is not None:
+            record["json_keys"] = sorted(str(k) for k in json_keys)
         if self.handle is not None:
             self.handle.write(json.dumps(record, ensure_ascii=False, sort_keys=True) + "\n")
 
@@ -203,15 +263,6 @@ class ErrorLogger:
         self.close()
         if self.path and self.tmp_path:
             atomic_publish_file(self.tmp_path, self.path)
-            self.tmp_path = None
-
-    def cleanup(self) -> None:
-        self.close()
-        if self.tmp_path:
-            try:
-                os.unlink(self.tmp_path)
-            except OSError:
-                pass
             self.tmp_path = None
 
 
@@ -228,6 +279,10 @@ def page_id(page_elem: ET.Element) -> str:
 
 def page_title(page_elem: ET.Element) -> str:
     return child_text(page_elem, "title")
+
+
+def page_namespace(page_elem: ET.Element) -> str:
+    return child_text(page_elem, "ns")
 
 
 def revision_id(rev_elem: ET.Element) -> str:
@@ -319,16 +374,26 @@ def extract_revision_meta(
     return RevisionMeta(rid, parent_id, ts, user, flags)
 
 
-# --------- Decode JSON from <text> ---------
+# --------- Decode/classify JSON from <text> ---------
 
 def parse_entity_json_from_text(text: str) -> Tuple[Optional[object], bool]:
-    raw = html.unescape(text).strip()
+    raw = text.strip()
     if not raw:
         return None, False
     try:
         return json.loads(raw), True
     except json.JSONDecodeError:
         return None, False
+
+
+def classify_revision_json(data: object) -> str:
+    if not isinstance(data, dict):
+        return "non_object"
+    if isinstance(data.get("id"), str) and data.get("id"):
+        return "entity"
+    if isinstance(data.get("entity"), str) and data.get("entity") and isinstance(data.get("redirect"), str) and data.get("redirect"):
+        return "redirect"
+    return "unknown_object"
 
 
 # --------- RDF-ish term formatting ---------
@@ -486,11 +551,9 @@ def extract_triples(entity: dict) -> Set[Triple]:
             continue
 
         has_preferred = any(rank == "preferred" for rank, _, _ in non_depr_value)
-
-        if has_preferred:
-            truthy = [c for c in non_depr_value if c[0] == "preferred"]
-        else:
-            truthy = [c for c in non_depr_value if c[0] == "normal"]
+        truthy = [c for c in non_depr_value if c[0] == "preferred"] if has_preferred else [
+            c for c in non_depr_value if c[0] == "normal"
+        ]
 
         for _, _, obj in truthy:
             out.add((subj, f"wdt:{pid}", obj))
@@ -528,9 +591,37 @@ def serialize_quality_flags(flags: Set[str]) -> str:
     return ";".join(sorted(f for f in flags if f))
 
 
+def lifecycle_row(
+    output_schema: str,
+    info: ActiveInfo,
+    triple: Triple,
+    ddate: str,
+    drevid: str,
+    dparentid: str,
+    duser: str,
+    flags: Set[str],
+) -> list:
+    s, p, o = triple
+    legacy = [s, p, o, info.cdate, info.cuser, ddate, duser]
+    if output_schema == "legacy":
+        return legacy
+    return legacy + [
+        info.entity_id,
+        info.page_id,
+        info.crevid,
+        info.cparentid,
+        drevid,
+        dparentid,
+        info.source_shard,
+        info.schema_version,
+        serialize_quality_flags(info.quality_flags | flags),
+    ]
+
+
 def write_lifecycle_row(
     writer: csv.writer,
     metrics: dict,
+    output_schema: str,
     info: ActiveInfo,
     triple: Triple,
     ddate: str,
@@ -539,67 +630,163 @@ def write_lifecycle_row(
     duser: str,
     flags: Set[str],
 ) -> None:
+    t0 = time.perf_counter_ns()
+    writer.writerow(lifecycle_row(output_schema, info, triple, ddate, drevid, dparentid, duser, flags))
+    metrics["csv_writing_seconds"] += (time.perf_counter_ns() - t0) / 1_000_000_000
+    metrics["output_data_rows"] += 1
+
+
+def write_event_row(
+    writer: Optional[csv.writer],
+    metrics: dict,
+    entity_id: str,
+    page_id_value: str,
+    rev_meta: RevisionMeta,
+    action: str,
+    triple: Triple,
+    source_shard: str,
+    flags: Set[str],
+) -> None:
+    if writer is None:
+        return
     s, p, o = triple
-    row = [
-        info.entity_id,
-        info.page_id,
+    t0 = time.perf_counter_ns()
+    writer.writerow([
+        entity_id,
+        page_id_value,
+        rev_meta.revision_id,
+        rev_meta.parent_revision_id,
+        rev_meta.timestamp,
+        rev_meta.contributor,
+        action,
         s,
         p,
         o,
-        info.cdate,
-        info.crevid,
-        info.cparentid,
-        info.cuser,
-        ddate,
-        drevid,
-        dparentid,
-        duser,
-        info.source_shard,
-        info.schema_version,
-        serialize_quality_flags(info.quality_flags | flags),
-    ]
-    t0 = time.perf_counter_ns()
-    writer.writerow(row)
+        source_shard,
+        SCHEMA_VERSION,
+        serialize_quality_flags(flags),
+    ])
     metrics["csv_writing_seconds"] += (time.perf_counter_ns() - t0) / 1_000_000_000
-    metrics["output_data_rows"] += 1
+    metrics["event_output_rows"] += 1
+    if action == "ADD":
+        metrics["event_add_rows"] += 1
+    elif action == "DELETE":
+        metrics["event_delete_rows"] += 1
 
 
 def title_matches_entity(page_title_value: str, entity_id: str) -> bool:
     if not page_title_value or not entity_id:
         return True
-    return page_title_value == entity_id or page_title_value == f"Property:{entity_id}"
+    return page_title_value == entity_id or page_title_value == f"Property:{entity_id}" or page_title_value == f"Lexeme:{entity_id}"
+
+
+def process_revision_state(
+    writer: csv.writer,
+    event_writer: Optional[csv.writer],
+    metrics: dict,
+    active: Dict[Triple, ActiveInfo],
+    prev_set: Set[Triple],
+    cur_set: Set[Triple],
+    entity_id: str,
+    page_id_value: str,
+    rev_meta: RevisionMeta,
+    source_shard: str,
+    page_quality_flags: Set[str],
+    output_schema: str,
+) -> Set[Triple]:
+    t0 = time.perf_counter_ns()
+    added = sorted(cur_set - prev_set)
+    removed = sorted(prev_set - cur_set)
+    metrics["delta_computation_seconds"] += (time.perf_counter_ns() - t0) / 1_000_000_000
+
+    for t in added:
+        metrics["triple_add_events"] += 1
+        creation_flags = set(page_quality_flags) | set(rev_meta.flags)
+        active[t] = ActiveInfo(
+            entity_id=entity_id,
+            page_id=page_id_value,
+            cdate=rev_meta.timestamp,
+            crevid=rev_meta.revision_id,
+            cparentid=rev_meta.parent_revision_id,
+            cuser=rev_meta.contributor,
+            source_shard=source_shard,
+            schema_version=SCHEMA_VERSION,
+            quality_flags=creation_flags,
+        )
+        write_event_row(event_writer, metrics, entity_id, page_id_value, rev_meta, "ADD", t, source_shard, creation_flags)
+
+    for t in removed:
+        metrics["triple_delete_events"] += 1
+        row_flags = set(page_quality_flags) | deletion_flags(rev_meta)
+        info = active.get(t) or ActiveInfo(
+            entity_id=entity_id,
+            page_id=page_id_value,
+            cdate="",
+            crevid="",
+            cparentid="",
+            cuser="",
+            source_shard=source_shard,
+            schema_version=SCHEMA_VERSION,
+            quality_flags=set(page_quality_flags),
+        )
+        write_event_row(event_writer, metrics, entity_id, page_id_value, rev_meta, "DELETE", t, source_shard, row_flags)
+        write_lifecycle_row(
+            writer,
+            metrics,
+            output_schema,
+            info,
+            t,
+            rev_meta.timestamp,
+            rev_meta.revision_id,
+            rev_meta.parent_revision_id,
+            rev_meta.contributor,
+            row_flags,
+        )
+        metrics["closed_lifecycle_rows"] += 1
+        active.pop(t, None)
+
+    return cur_set
 
 
 def process_page(
     page_elem: ET.Element,
     writer: csv.writer,
+    event_writer: Optional[csv.writer],
     metrics: dict,
     errors: ErrorLogger,
     source_shard: str,
+    output_schema: str,
 ) -> None:
     metrics["pages_seen"] += 1
     title_value = page_title(page_elem)
     page_id_value = page_id(page_elem)
+    ns_value = page_namespace(page_elem)
 
     if not title_value:
         metrics["pages_without_title"] += 1
         errors.log("warning", "page_without_title", "Page is missing a title.", page_id=page_id_value)
         return
 
+    revisions = page_elem.findall(f"{MW_NS}revision")
+    if ns_value not in SUPPORTED_ENTITY_NAMESPACES:
+        metrics["pages_skipped_non_entity_namespace"] += 1
+        metrics["revisions_skipped_non_entity_namespace"] += len(revisions)
+        return
+
     metrics["pages_processed"] += 1
     active: Dict[Triple, ActiveInfo] = {}
     prev_set: Set[Triple] = set()
-    page_flags: Set[str] = set()
+    page_quality_flags: Set[str] = set()
     current_entity_id = ""
 
-    for rev in page_elem.findall(f"{MW_NS}revision"):
+    for rev in revisions:
         metrics["revisions_seen"] += 1
         rev_meta = extract_revision_meta(rev, metrics, errors, title_value, page_id_value)
         text_elem = rev.find(f"{MW_NS}text")
 
         if text_elem is None:
             metrics["revisions_missing_text"] += 1
-            page_flags.add("page_has_revision_gap")
+            page_quality_flags.add("page_has_revision_gap")
             errors.log(
                 "warning",
                 "missing_revision_text",
@@ -615,7 +802,7 @@ def process_page(
 
         if text_elem.text is None or not text_elem.text.strip():
             metrics["revisions_with_empty_text"] += 1
-            page_flags.add("page_has_revision_gap")
+            page_quality_flags.add("page_has_revision_gap")
             errors.log(
                 "warning",
                 "empty_revision_text",
@@ -635,7 +822,7 @@ def process_page(
 
         if not ok:
             metrics["revisions_with_invalid_json"] += 1
-            page_flags.add("page_has_revision_gap")
+            page_quality_flags.add("page_has_revision_gap")
             errors.log(
                 "warning",
                 "invalid_json",
@@ -649,9 +836,10 @@ def process_page(
             )
             continue
 
-        if not isinstance(entity_obj, dict):
+        classification = classify_revision_json(entity_obj)
+        if classification == "non_object":
             metrics["revisions_with_non_object_json"] += 1
-            page_flags.add("page_has_revision_gap")
+            page_quality_flags.add("page_has_revision_gap")
             errors.log(
                 "warning",
                 "non_object_json",
@@ -665,28 +853,65 @@ def process_page(
             )
             continue
 
-        metrics["revisions_with_valid_entity_json"] += 1
-        entity_id = entity_obj.get("id")
-        if not isinstance(entity_id, str) or not entity_id:
-            metrics["revisions_missing_entity_id"] += 1
-            page_flags.add("page_has_revision_gap")
+        if classification == "unknown_object":
+            metrics["revisions_with_unknown_json_structure"] += 1
+            page_quality_flags.add("page_has_revision_gap")
             errors.log(
                 "warning",
-                "missing_entity_id",
-                "Entity JSON is missing an id; revision is skipped to avoid false deletions.",
+                "unknown_entity_json_structure",
+                "Revision JSON is a dictionary but is neither an entity nor a redirect.",
                 page_title=title_value,
                 page_id=page_id_value,
                 revision_id=rev_meta.revision_id,
                 parent_revision_id=rev_meta.parent_revision_id,
                 timestamp=rev_meta.timestamp,
                 contributor=rev_meta.contributor,
+                json_keys=entity_obj.keys() if isinstance(entity_obj, dict) else [],
             )
             continue
 
+        if classification == "redirect":
+            metrics["redirect_revisions"] += 1
+            assert isinstance(entity_obj, dict)
+            entity_id = str(entity_obj["entity"])
+            current_entity_id = entity_id
+            if entity_id != title_value:
+                metrics["redirect_entity_mismatches"] += 1
+                errors.log(
+                    "warning",
+                    "redirect_entity_mismatch",
+                    "Redirect source does not match the page title.",
+                    page_title=title_value,
+                    page_id=page_id_value,
+                    entity_id=entity_id,
+                    revision_id=rev_meta.revision_id,
+                    parent_revision_id=rev_meta.parent_revision_id,
+                    timestamp=rev_meta.timestamp,
+                    contributor=rev_meta.contributor,
+                )
+            prev_set = process_revision_state(
+                writer,
+                event_writer,
+                metrics,
+                active,
+                prev_set,
+                set(),
+                entity_id,
+                page_id_value,
+                rev_meta,
+                source_shard,
+                page_quality_flags,
+                output_schema,
+            )
+            continue
+
+        assert isinstance(entity_obj, dict)
+        metrics["revisions_with_valid_entity_json"] += 1
+        entity_id = str(entity_obj["id"])
         current_entity_id = entity_id
         if not title_matches_entity(title_value, entity_id):
             metrics["entity_id_mismatches"] += 1
-            page_flags.add("entity_id_mismatch")
+            page_quality_flags.add("entity_id_mismatch")
             errors.log(
                 "warning",
                 "entity_id_mismatch",
@@ -720,66 +945,27 @@ def process_page(
             raise
 
         metrics["triples_extracted_total"] += len(cur_set)
-
-        t0 = time.perf_counter_ns()
-        added = sorted(cur_set - prev_set)
-        removed = sorted(prev_set - cur_set)
-        metrics["delta_computation_seconds"] += (time.perf_counter_ns() - t0) / 1_000_000_000
-
-        for t in added:
-            metrics["triple_add_events"] += 1
-            creation_flags = set(page_flags)
-            if not rev_meta.revision_id:
-                creation_flags.add("missing_creation_revision_id")
-            if not rev_meta.timestamp:
-                creation_flags.add("missing_creation_timestamp")
-            if not rev_meta.contributor:
-                creation_flags.add("missing_creation_contributor")
-            active[t] = ActiveInfo(
-                entity_id=entity_id,
-                page_id=page_id_value,
-                cdate=rev_meta.timestamp,
-                crevid=rev_meta.revision_id,
-                cparentid=rev_meta.parent_revision_id,
-                cuser=rev_meta.contributor,
-                source_shard=source_shard,
-                schema_version=SCHEMA_VERSION,
-                quality_flags=creation_flags,
-            )
-
-        for t in removed:
-            metrics["triple_delete_events"] += 1
-            info = active.get(t) or ActiveInfo(
-                entity_id=current_entity_id,
-                page_id=page_id_value,
-                cdate="",
-                crevid="",
-                cparentid="",
-                cuser="",
-                source_shard=source_shard,
-                schema_version=SCHEMA_VERSION,
-                quality_flags=set(page_flags),
-            )
-            row_flags = set(page_flags) | deletion_flags(rev_meta)
-            write_lifecycle_row(
-                writer,
-                metrics,
-                info,
-                t,
-                rev_meta.timestamp,
-                rev_meta.revision_id,
-                rev_meta.parent_revision_id,
-                rev_meta.contributor,
-                row_flags,
-            )
-            metrics["closed_lifecycle_rows"] += 1
-            active.pop(t, None)
-
-        prev_set = cur_set
+        prev_set = process_revision_state(
+            writer,
+            event_writer,
+            metrics,
+            active,
+            prev_set,
+            cur_set,
+            entity_id,
+            page_id_value,
+            rev_meta,
+            source_shard,
+            page_quality_flags,
+            output_schema,
+        )
 
     for t in sorted(active):
-        write_lifecycle_row(writer, metrics, active[t], t, "", "", "", "", set(page_flags))
+        write_lifecycle_row(writer, metrics, output_schema, active[t], t, "", "", "", "", set(page_quality_flags))
         metrics["open_lifecycle_rows"] += 1
+
+    if not current_entity_id:
+        current_entity_id = title_value
 
 
 def iter_pages(xml_file: io.BufferedReader, metrics: dict) -> Iterable[ET.Element]:
@@ -799,19 +985,32 @@ def iter_pages(xml_file: io.BufferedReader, metrics: dict) -> Iterable[ET.Elemen
 def run(args: argparse.Namespace, metrics: dict, errors: ErrorLogger) -> None:
     delimiter = "\t" if args.tsv or args.output.endswith(".tsv") else ","
     source_shard = os.path.basename(args.input)
+    header = EXTENDED_HEADER if args.output_schema == "extended" else LEGACY_HEADER
 
-    with open_maybe_compressed(args.input) as f_in, open(args.output, "w", encoding="utf-8", newline="") as f_out:
-        w = csv.writer(f_out, delimiter=delimiter, lineterminator="\n")
-        t0 = time.perf_counter_ns()
-        w.writerow(LIFECYCLE_HEADER)
-        metrics["csv_writing_seconds"] += (time.perf_counter_ns() - t0) / 1_000_000_000
+    with AtomicTextWriter(args.events_output if args.emit_events else None, newline="") as events_handle:
+        event_writer = csv.writer(events_handle, delimiter=delimiter, lineterminator="\n") if events_handle else None
+        if event_writer is not None:
+            event_writer.writerow(EVENT_HEADER)
 
-        n = 0
-        for page in iter_pages(f_in, metrics):
-            process_page(page, w, metrics, errors, source_shard)
-            n += 1
-            if args.limit_pages and n >= args.limit_pages:
-                break
+        with open_maybe_compressed(args.input) as f_in, open(args.output, "w", encoding="utf-8", newline="") as f_out:
+            w = csv.writer(f_out, delimiter=delimiter, lineterminator="\n")
+            t0 = time.perf_counter_ns()
+            w.writerow(header)
+            metrics["csv_writing_seconds"] += (time.perf_counter_ns() - t0) / 1_000_000_000
+
+            n = 0
+            for page in iter_pages(f_in, metrics):
+                process_page(page, w, event_writer, metrics, errors, source_shard, args.output_schema)
+                n += 1
+                if args.limit_pages and n >= args.limit_pages:
+                    break
+
+
+def validate_event_args(args: argparse.Namespace) -> None:
+    if args.emit_events and not args.events_output:
+        raise SystemExit("--emit-events requires --events-output PATH")
+    if args.events_output and not args.emit_events:
+        raise SystemExit("--events-output requires --emit-events")
 
 
 def main() -> int:
@@ -822,10 +1021,14 @@ def main() -> int:
     ap.add_argument("--limit-pages", type=int, default=0, help="Stop after N pages (0=no limit)")
     ap.add_argument("--metrics-output", help="Output shard metrics JSON path")
     ap.add_argument("--errors-output", help="Output JSON Lines warning/error path")
+    ap.add_argument("--output-schema", choices=("extended", "legacy"), default="extended", help="Lifecycle CSV schema.")
+    ap.add_argument("--emit-events", action="store_true", help="Write an ADD/DELETE event stream CSV.")
+    ap.add_argument("--events-output", help="Output event stream CSV path; requires --emit-events.")
     args = ap.parse_args()
+    validate_event_args(args)
 
     started_ns = time.perf_counter_ns()
-    metrics = new_metrics(args.input, args.output)
+    metrics = new_metrics(args.input, args.output, args.output_schema, args.emit_events, args.events_output)
     errors = ErrorLogger(args.errors_output, metrics["input_basename"], metrics)
 
     try:
@@ -840,6 +1043,11 @@ def main() -> int:
             metrics["output_bytes"] = os.path.getsize(args.output)
         except OSError:
             metrics["output_bytes"] = 0
+        if args.emit_events and args.events_output:
+            try:
+                metrics["event_output_bytes"] = os.path.getsize(args.events_output)
+            except OSError:
+                metrics["event_output_bytes"] = 0
         try:
             errors.publish()
         except Exception as e:

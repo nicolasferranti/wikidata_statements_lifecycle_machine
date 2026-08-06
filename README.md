@@ -51,7 +51,20 @@ Each revision is expected to contain Wikidata entity JSON in the revision
 
 ## Output Schema
 
-The output file contains the following columns:
+By default, the converter writes the extended lifecycle schema. Its first seven
+columns deliberately remain the original legacy columns:
+
+```text
+s,p,o,cdate,cuser,ddate,duser
+```
+
+Scripts selecting these columns by name should continue to work. Scripts reading
+the first seven columns positionally should also continue to work. Scripts that
+require exactly seven columns should run with `--output-schema legacy`. New
+scripts should prefer column names over fixed numeric positions. Revision-level
+metadata is available only in `--output-schema extended`.
+
+The legacy columns are:
 
 | Column | Meaning |
 | --- | --- |
@@ -65,6 +78,28 @@ The output file contains the following columns:
 
 Rows with empty `ddate` and `duser` were still active at the end of the input
 file slice.
+
+The extended schema appends:
+
+```text
+entity_id,page_id,crevid,cparentid,drevid,dparentid,source_shard,schema_version,quality_flags
+```
+
+For pandas migration, use an explicit legacy view when needed:
+
+```python
+legacy_columns = [
+    "s",
+    "p",
+    "o",
+    "cdate",
+    "cuser",
+    "ddate",
+    "duser",
+]
+
+df_legacy_view = df[legacy_columns]
+```
 
 ## Extracted Triples
 
@@ -89,7 +124,33 @@ Convert one compressed dump part to CSV:
 ```bash
 python3 wd_history_rdf_csv.py \
   wikidata_pages-history/wikidatawiki-20250501-pages-meta-history17.xml-p31710574p31710876.bz2 \
-  -o triples_lifecycle.csv
+  -o triples_lifecycle.csv \
+  --metrics-output triples_lifecycle.metrics.json \
+  --errors-output triples_lifecycle.errors.jsonl \
+  --output-schema extended
+```
+
+Also write the optional triple event stream:
+
+```bash
+python3 wd_history_rdf_csv.py \
+  wikidata_pages-history/wikidatawiki-20250501-pages-meta-history17.xml-p31710574p31710876.bz2 \
+  -o triples_lifecycle.csv \
+  --metrics-output triples_lifecycle.metrics.json \
+  --errors-output triples_lifecycle.errors.jsonl \
+  --output-schema extended \
+  --emit-events \
+  --events-output triples_lifecycle.events.csv
+```
+
+Write the legacy seven-column schema:
+
+```bash
+python3 wd_history_rdf_csv.py input.xml.bz2 \
+  -o triples_lifecycle_legacy.csv \
+  --metrics-output triples_lifecycle_legacy.metrics.json \
+  --errors-output triples_lifecycle_legacy.errors.jsonl \
+  --output-schema legacy
 ```
 
 Write TSV instead of CSV:
@@ -113,8 +174,11 @@ chmod +x run_wd_history_batch_parallel.sh
 
 ./run_wd_history_batch_parallel.sh \
   --input-dir /path/to/wikidata_pages_meta_history \
-  --out-dir plain_edit_history_triples \
   --script wd_history_rdf_csv.py \
+  --snapshot-id 20250501 \
+  --run-id 20250501-regeneration \
+  --run-dir runs/20250501-regeneration \
+  --output-schema extended \
   --jobs 4
 ```
 
@@ -123,8 +187,11 @@ Run the batch job in the background and keep a log:
 ```bash
 nohup ./run_wd_history_batch_parallel.sh \
   --input-dir /path/to/wikidata_pages_meta_history \
-  --out-dir plain_edit_history_triples \
   --script wd_history_rdf_csv.py \
+  --snapshot-id 20250501 \
+  --run-id 20250501-regeneration \
+  --run-dir runs/20250501-regeneration \
+  --output-schema extended \
   --jobs 4 \
   > batch_run.log 2>&1 &
 ```
@@ -134,13 +201,16 @@ For a quick batch smoke test, process only the first matching input file:
 ```bash
 ./run_wd_history_batch_parallel.sh \
   --input-dir /path/to/wikidata_pages_meta_history \
-  --out-dir plain_edit_history_triples \
   --script wd_history_rdf_csv.py \
+  --snapshot-id 20250501 \
+  --run-id 20250501-smoke \
+  --run-dir runs/20250501-smoke \
+  --output-schema extended \
   --jobs 1 \
   --first-only
 ```
 
-The batch script currently looks for files named:
+The batch script looks for files matching the requested snapshot, for example:
 
 ```text
 wikidatawiki-20250501-pages-meta-history*.bz2
@@ -156,8 +226,8 @@ For example, an input file ending in
 `pages-meta-history17.xml-p31710574p31710876.bz2` becomes
 `20250501-triple-pages-meta-history17-p31710574p31710876.csv`.
 
-Existing non-empty output files are skipped, so interrupted batch jobs can be
-restarted.
+Completed shards are skipped only after the runner verifies their completion
+JSON, checksums, lifecycle header, metrics, and error artifact.
 
 ## Notes and Limitations
 

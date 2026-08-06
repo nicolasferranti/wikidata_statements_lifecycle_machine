@@ -6,6 +6,8 @@ export LC_ALL=C
 export PYTHONHASHSEED=0
 
 SCHEMA_VERSION="2.0.0"
+OUTPUT_SCHEMA="extended"
+EMIT_EVENTS=0
 SNAPSHOT_ID=""
 RUN_ID=""
 RUN_DIR=""
@@ -40,6 +42,8 @@ Options:
   --run-id NAME         Auditable run identifier. Default: snapshot timestamp id.
   --run-dir PATH        Run directory for manifest, attempts, artifacts, metrics, errors.
   --schema-version VER  Expected lifecycle/metrics schema. Default: 2.0.0.
+  --output-schema MODE  Lifecycle schema: extended or legacy. Default: extended.
+  --emit-events         Also publish per-revision ADD/DELETE event CSVs.
   --first-only          Process only the first matching shard.
   --retry-failed        Run shards without a valid completion marker.
   --force               Run shards again even when completion is verified.
@@ -129,7 +133,8 @@ write_manifest() {
     "$RUN_ID" "$SNAPSHOT_ID" "$SCHEMA_VERSION" "$status" "$STARTED_AT_UTC" "$finished" \
     "$INPUT_DIR" "$PY_SCRIPT" "$py_sha" "$RUNNER_SCRIPT" "$runner_sha" "$COMMAND_LINE" \
     "$JOBS" "$host" "$os_name" "$kernel" "$python_version" "$cpu_count" "$total_memory" \
-    "$input_count" "$input_bytes" "$successful" "$failed" "$skipped" "$TZ" "$LC_ALL" "$PYTHONHASHSEED" <<'PY'
+    "$input_count" "$input_bytes" "$successful" "$failed" "$skipped" "$TZ" "$LC_ALL" "$PYTHONHASHSEED" \
+    "$OUTPUT_SCHEMA" "$EMIT_EVENTS" <<'PY'
 import json
 import os
 import sys
@@ -138,13 +143,16 @@ import sys
     path, run_id, snapshot_id, schema_version, status, started, finished,
     input_dir, py_script, py_sha, runner_script, runner_sha, command_line,
     jobs, host, os_name, kernel, python_version, cpu_count, total_memory,
-    input_count, input_bytes, successful, failed, skipped, tz, lc_all, py_hash_seed
+    input_count, input_bytes, successful, failed, skipped, tz, lc_all, py_hash_seed,
+    output_schema, emit_events
 ) = sys.argv[1:]
 
 payload = {
     "run_id": run_id,
     "snapshot_id": snapshot_id,
     "schema_version": schema_version,
+    "output_schema": output_schema,
+    "emit_events": emit_events == "1",
     "status": status,
     "started_at_utc": started,
     "finished_at_utc": None if not finished else finished,
@@ -201,12 +209,18 @@ validate_lifecycle_artifact() {
   local metrics="$2"
   local expected_schema="$3"
   local expected_header="$4"
-  python3 - "$lifecycle" "$metrics" "$expected_schema" "$expected_header" <<'PY'
+  local expected_output_schema="$5"
+  local emit_events="$6"
+  local events="$7"
+  local expected_event_header="$8"
+  python3 - "$lifecycle" "$metrics" "$expected_schema" "$expected_header" "$expected_output_schema" "$emit_events" "$events" "$expected_event_header" <<'PY'
 import json
 import os
 import sys
+import csv
 
-lifecycle, metrics_path, expected_schema, expected_header = sys.argv[1:]
+lifecycle, metrics_path, expected_schema, expected_header, expected_output_schema, emit_events, events_path, expected_event_header = sys.argv[1:]
+emit_events = emit_events == "1"
 if not os.path.exists(lifecycle):
     print("temporary lifecycle CSV does not exist")
     sys.exit(1)
@@ -228,6 +242,9 @@ except Exception as e:
 if metrics.get("schema_version") != expected_schema:
     print("metrics schema_version mismatch")
     sys.exit(1)
+if metrics.get("output_schema") != expected_output_schema:
+    print("metrics output_schema mismatch")
+    sys.exit(1)
 if metrics.get("completed_successfully") is not True:
     print("metrics completed_successfully is not true")
     sys.exit(1)
@@ -246,6 +263,56 @@ if int(metrics.get("output_data_rows", -1)) != int(metrics.get("closed_lifecycle
 if int(metrics.get("triple_delete_events", -1)) != int(metrics.get("closed_lifecycle_rows", -2)):
     print("transition invariant failed")
     sys.exit(1)
+if bool(metrics.get("emit_events")) != emit_events:
+    print("metrics emit_events mismatch")
+    sys.exit(1)
+if emit_events:
+    if not os.path.exists(events_path):
+        print("event CSV does not exist")
+        sys.exit(1)
+    add_rows = 0
+    delete_rows = 0
+    with open(events_path, "r", encoding="utf-8", newline="") as f:
+        reader = csv.reader(f)
+        event_header = ",".join(next(reader, []))
+        for parts in reader:
+            action = parts[6] if len(parts) > 6 else ""
+            if action == "ADD":
+                add_rows += 1
+            elif action == "DELETE":
+                delete_rows += 1
+    if event_header != expected_event_header:
+        print("unexpected event CSV header")
+        sys.exit(1)
+    event_rows = add_rows + delete_rows
+    if int(metrics.get("event_output_rows", -1)) != event_rows:
+        print("event_output_rows mismatch")
+        sys.exit(1)
+    if int(metrics.get("event_add_rows", -1)) != add_rows:
+        print("event_add_rows mismatch")
+        sys.exit(1)
+    if int(metrics.get("event_delete_rows", -1)) != delete_rows:
+        print("event_delete_rows mismatch")
+        sys.exit(1)
+    if add_rows != int(metrics.get("triple_add_events", -1)):
+        print("ADD events do not match triple_add_events")
+        sys.exit(1)
+    if delete_rows != int(metrics.get("triple_delete_events", -1)):
+        print("DELETE events do not match triple_delete_events")
+        sys.exit(1)
+    if delete_rows != int(metrics.get("closed_lifecycle_rows", -1)):
+        print("DELETE events do not match closed_lifecycle_rows")
+        sys.exit(1)
+    if add_rows != int(metrics.get("closed_lifecycle_rows", -1)) + int(metrics.get("open_lifecycle_rows", -1)):
+        print("ADD events do not match closed+open lifecycle rows")
+        sys.exit(1)
+else:
+    if metrics.get("event_output_path") is not None:
+        print("event_output_path should be null when events are disabled")
+        sys.exit(1)
+    if any(int(metrics.get(k, 0)) != 0 for k in ("event_output_rows", "event_add_rows", "event_delete_rows")):
+        print("event metrics should be zero when events are disabled")
+        sys.exit(1)
 print(rows)
 PY
 }
@@ -316,21 +383,31 @@ write_completion() {
   local output_rows="$8"
   local metrics_sha="$9"
   local errors_sha="${10}"
+  local emit_events="${11}"
+  local event_path="${12}"
+  local event_rows="${13}"
+  local event_bytes="${14}"
+  local event_sha="${15}"
   python3 - "$path" "$RUN_ID" "$SNAPSHOT_ID" "$SCHEMA_VERSION" "$shard_id" "$attempt" \
-    "$input_sha" "$py_sha" "$output_sha" "$output_size" "$output_rows" "$metrics_sha" "$errors_sha" "$(utc_now)" <<'PY'
+    "$input_sha" "$py_sha" "$output_sha" "$output_size" "$output_rows" "$metrics_sha" "$errors_sha" "$(utc_now)" \
+    "$OUTPUT_SCHEMA" "$emit_events" "$event_path" "$event_rows" "$event_bytes" "$event_sha" <<'PY'
 import json
 import os
 import sys
 
 (
     path, run_id, snapshot_id, schema_version, shard_id, attempt, input_sha,
-    py_sha, output_sha, output_size, output_rows, metrics_sha, errors_sha, completed
+    py_sha, output_sha, output_size, output_rows, metrics_sha, errors_sha, completed,
+    output_schema, emit_events, event_path, event_rows, event_bytes, event_sha
 ) = sys.argv[1:]
+emit_events_bool = emit_events == "1"
 payload = {
     "status": "success",
     "run_id": run_id,
     "snapshot_id": snapshot_id,
     "schema_version": schema_version,
+    "output_schema": output_schema,
+    "emit_events": emit_events_bool,
     "shard_id": shard_id,
     "successful_attempt": int(attempt),
     "input_sha256": input_sha,
@@ -342,6 +419,13 @@ payload = {
     "errors_sha256": errors_sha,
     "completed_at_utc": completed,
 }
+if emit_events_bool:
+    payload.update({
+        "event_output_path": event_path,
+        "event_output_rows": int(event_rows),
+        "event_output_bytes": int(event_bytes),
+        "event_output_sha256": event_sha,
+    })
 tmp = f"{path}.tmp.{os.getpid()}"
 with open(tmp, "w", encoding="utf-8") as f:
     json.dump(payload, f, ensure_ascii=False, indent=2, sort_keys=True)
@@ -360,12 +444,19 @@ verify_completion() {
   local input_sha="$7"
   local py_sha="$8"
   local expected_header="$9"
-  python3 - "$completion" "$output" "$metrics" "$errors" "$run_id" "$schema" "$input_sha" "$py_sha" "$expected_header" <<'PY'
+  local expected_output_schema="${10}"
+  local emit_events="${11}"
+  local events="${12}"
+  local expected_event_header="${13}"
+  python3 - "$completion" "$output" "$metrics" "$errors" "$run_id" "$schema" "$input_sha" "$py_sha" "$expected_header" \
+    "$expected_output_schema" "$emit_events" "$events" "$expected_event_header" <<'PY'
 import json
 import os
 import sys
+import csv
 
-completion, output, metrics_path, errors_path, run_id, schema, input_sha, py_sha, expected_header = sys.argv[1:]
+completion, output, metrics_path, errors_path, run_id, schema, input_sha, py_sha, expected_header, expected_output_schema, emit_events, events_path, expected_event_header = sys.argv[1:]
+emit_events = emit_events == "1"
 try:
     with open(completion, "r", encoding="utf-8") as f:
         c = json.load(f)
@@ -375,11 +466,17 @@ if c.get("status") != "success":
     sys.exit(1)
 if c.get("run_id") != run_id or c.get("schema_version") != schema:
     sys.exit(1)
+if c.get("output_schema") != expected_output_schema or bool(c.get("emit_events")) != emit_events:
+    sys.exit(1)
 if c.get("input_sha256") != input_sha or c.get("python_script_sha256") != py_sha:
     sys.exit(1)
 for p in (output, metrics_path, errors_path):
     if not os.path.exists(p):
         sys.exit(1)
+if emit_events and not os.path.exists(events_path):
+    sys.exit(1)
+if (not emit_events) and os.path.exists(events_path):
+    sys.exit(1)
 import hashlib
 def sha(path):
     h = hashlib.sha256()
@@ -409,6 +506,30 @@ if int(m.get("output_data_rows", -1)) != int(m.get("closed_lifecycle_rows", -2))
     sys.exit(1)
 if int(m.get("triple_delete_events", -1)) != int(m.get("closed_lifecycle_rows", -2)):
     sys.exit(1)
+if m.get("output_schema") != expected_output_schema or bool(m.get("emit_events")) != emit_events:
+    sys.exit(1)
+if emit_events:
+    if sha(events_path) != c.get("event_output_sha256"):
+        sys.exit(1)
+    with open(events_path, "r", encoding="utf-8", newline="") as f:
+        reader = csv.reader(f)
+        event_header = ",".join(next(reader, []))
+        add_rows = 0
+        delete_rows = 0
+        for row in reader:
+            if len(row) > 6 and row[6] == "ADD":
+                add_rows += 1
+            elif len(row) > 6 and row[6] == "DELETE":
+                delete_rows += 1
+    if event_header != expected_event_header:
+        sys.exit(1)
+    if add_rows != int(m.get("event_add_rows", -1)) or delete_rows != int(m.get("event_delete_rows", -1)):
+        sys.exit(1)
+    if add_rows + delete_rows != int(m.get("event_output_rows", -1)):
+        sys.exit(1)
+else:
+    if m.get("event_output_path") is not None:
+        sys.exit(1)
 sys.exit(0)
 PY
 }
@@ -442,10 +563,15 @@ run_worker() {
   local final_output="$RUN_DIR/artifacts/lifecycle/$expected"
   local final_metrics="$RUN_DIR/metrics/${shard_id}.metrics.json"
   local final_errors="$RUN_DIR/errors/${shard_id}.errors.jsonl"
+  local final_events="$RUN_DIR/artifacts/events/${expected%.csv}.events.csv"
   local completion="$RUN_DIR/completion/${shard_id}.completion.json"
-  local expected_header="entity_id,page_id,s,p,o,cdate,crevid,cparentid,cuser,ddate,drevid,dparentid,duser,source_shard,schema_version,quality_flags"
+  local expected_header="s,p,o,cdate,cuser,ddate,duser,entity_id,page_id,crevid,cparentid,drevid,dparentid,source_shard,schema_version,quality_flags"
+  if [[ "$OUTPUT_SCHEMA" == "legacy" ]]; then
+    expected_header="s,p,o,cdate,cuser,ddate,duser"
+  fi
+  local expected_event_header="entity_id,page_id,revision_id,parent_revision_id,timestamp,contributor,action,s,p,o,source_shard,schema_version,quality_flags"
 
-  if [[ "$FORCE" -eq 0 ]] && verify_completion "$completion" "$final_output" "$final_metrics" "$final_errors" "$RUN_ID" "$SCHEMA_VERSION" "$input_sha" "$py_sha" "$expected_header"; then
+  if [[ "$FORCE" -eq 0 ]] && verify_completion "$completion" "$final_output" "$final_metrics" "$final_errors" "$RUN_ID" "$SCHEMA_VERSION" "$input_sha" "$py_sha" "$expected_header" "$OUTPUT_SCHEMA" "$EMIT_EVENTS" "$final_events" "$expected_event_header"; then
     echo "[SKIP VERIFIED] $base"
     printf 'skipped\n' > "$RUN_DIR/checksums/${shard_id}.worker_status"
     return 0
@@ -464,11 +590,15 @@ run_worker() {
   local tmp_output="$attempt_dir/lifecycle.tmp.csv"
   local tmp_metrics="$attempt_dir/metrics.tmp.json"
   local tmp_errors="$attempt_dir/errors.tmp.jsonl"
+  local tmp_events="$attempt_dir/events.tmp.csv"
   local started finished start_s end_s elapsed exit_code status output_size output_rows output_sha
 
   echo "[START] $base | attempt=$attempt | input_bytes=$input_bytes"
 
-  local cmd=(python3 "$PY_SCRIPT" "$input" -o "$tmp_output" --metrics-output "$tmp_metrics" --errors-output "$tmp_errors")
+  local cmd=(python3 "$PY_SCRIPT" "$input" -o "$tmp_output" --metrics-output "$tmp_metrics" --errors-output "$tmp_errors" --output-schema "$OUTPUT_SCHEMA")
+  if [[ "$EMIT_EVENTS" -eq 1 ]]; then
+    cmd+=(--emit-events --events-output "$tmp_events")
+  fi
   printf '/usr/bin/time -v -o %q ' "$system_time" > "$command_file"
   printf '%q ' "${cmd[@]}" >> "$command_file"
   printf '\n' >> "$command_file"
@@ -495,7 +625,7 @@ run_worker() {
   fi
 
   local validation_output validation_rc
-  validation_output="$(validate_lifecycle_artifact "$tmp_output" "$tmp_metrics" "$SCHEMA_VERSION" "$expected_header" 2>&1)"
+  validation_output="$(validate_lifecycle_artifact "$tmp_output" "$tmp_metrics" "$SCHEMA_VERSION" "$expected_header" "$OUTPUT_SCHEMA" "$EMIT_EVENTS" "$tmp_events" "$expected_event_header" 2>&1)"
   validation_rc=$?
   if [[ "$validation_rc" -ne 0 ]]; then
     status="validation_failed"
@@ -509,17 +639,34 @@ run_worker() {
   output_rows="$validation_output"
   output_size="$(file_size "$tmp_output")"
   output_sha="$(sha256_of "$tmp_output")"
-  local metrics_sha errors_sha
+  local metrics_sha errors_sha event_sha event_size event_rows
   metrics_sha="$(sha256_of "$tmp_metrics")"
   if [[ ! -f "$tmp_errors" ]]; then
     : > "$tmp_errors"
   fi
   errors_sha="$(sha256_of "$tmp_errors")"
+  event_sha=""
+  event_size=0
+  event_rows=0
+  if [[ "$EMIT_EVENTS" -eq 1 ]]; then
+    event_sha="$(sha256_of "$tmp_events")"
+    event_size="$(file_size "$tmp_events")"
+    event_rows="$(python3 - "$tmp_metrics" <<'PY'
+import json
+import sys
+with open(sys.argv[1], "r", encoding="utf-8") as f:
+    print(json.load(f).get("event_output_rows", 0))
+PY
+)"
+  fi
 
   mv -f "$tmp_output" "$final_output"
   mv -f "$tmp_metrics" "$final_metrics"
   mv -f "$tmp_errors" "$final_errors"
-  write_completion "$completion" "$shard_id" "$attempt" "$input_sha" "$py_sha" "$output_sha" "$output_size" "$output_rows" "$metrics_sha" "$errors_sha"
+  if [[ "$EMIT_EVENTS" -eq 1 ]]; then
+    mv -f "$tmp_events" "$final_events"
+  fi
+  write_completion "$completion" "$shard_id" "$attempt" "$input_sha" "$py_sha" "$output_sha" "$output_size" "$output_rows" "$metrics_sha" "$errors_sha" "$EMIT_EVENTS" "$final_events" "$event_rows" "$event_size" "$event_sha"
 
   status="success"
   write_attempt_status "$status_file" "$RUN_ID" "$shard_id" "$attempt" "$started" "$finished" "$elapsed" \
@@ -539,6 +686,8 @@ while [[ $# -gt 0 ]]; do
     --run-id) RUN_ID="${2:-}"; shift 2;;
     --run-dir) RUN_DIR="${2:-}"; shift 2;;
     --schema-version) SCHEMA_VERSION="${2:-}"; shift 2;;
+    --output-schema) OUTPUT_SCHEMA="${2:-}"; shift 2;;
+    --emit-events) EMIT_EVENTS=1; shift 1;;
     --first-only) FIRST_ONLY=1; shift 1;;
     --retry-failed) RETRY_FAILED=1; shift 1;;
     --force) FORCE=1; shift 1;;
@@ -569,6 +718,7 @@ rm -f /tmp/wd_history_runner_time_check.$$
 [[ "$JOBS" =~ ^[0-9]+$ ]] || die "--jobs must be an integer"
 [[ "$JOBS" -ge 1 ]] || die "--jobs must be >= 1"
 [[ "$SCHEMA_VERSION" == "2.0.0" ]] || die "This runner expects schema version 2.0.0"
+[[ "$OUTPUT_SCHEMA" == "extended" || "$OUTPUT_SCHEMA" == "legacy" ]] || die "--output-schema must be extended or legacy"
 [[ -d "$INPUT_DIR" ]] || die "Input dir not found: $INPUT_DIR"
 [[ -f "$PY_SCRIPT" ]] || die "Python script not found: $PY_SCRIPT"
 
@@ -587,6 +737,9 @@ if [[ -z "$RUN_ID" ]]; then
 fi
 
 mkdir -p "$RUN_DIR"/attempts "$RUN_DIR"/artifacts/lifecycle "$RUN_DIR"/metrics "$RUN_DIR"/errors "$RUN_DIR"/completion "$RUN_DIR"/checksums
+if [[ "$EMIT_EVENTS" -eq 1 ]]; then
+  mkdir -p "$RUN_DIR"/artifacts/events
+fi
 
 mapfile -d '' FILES < <(find "$INPUT_DIR" -maxdepth 1 -type f \
   -name "wikidatawiki-${SNAPSHOT_ID}-pages-meta-history*" -print0 | sort -z)
@@ -613,6 +766,8 @@ echo "Run directory: $RUN_DIR"
 echo "Found $TOTAL input files"
 echo "Python script: $PY_SCRIPT"
 echo "Parallel jobs: $JOBS"
+echo "Output schema: $OUTPUT_SCHEMA"
+echo "Emit events: $EMIT_EVENTS"
 echo "First-only mode: $FIRST_ONLY"
 echo
 
