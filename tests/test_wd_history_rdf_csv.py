@@ -133,6 +133,8 @@ class ConverterTest(unittest.TestCase):
             self.assertEqual(metrics["redirect_revisions"], 3)
             self.assertEqual(metrics["redirect_entity_mismatches"], 1)
             self.assertEqual(metrics["pages_skipped_non_entity_namespace"], 1)
+            self.assertEqual(metrics["revisions_seen"], 12)
+            self.assertEqual(metrics["revisions_processed"], 11)
             self.assertEqual(metrics["revisions_skipped_non_entity_namespace"], 1)
             self.assertEqual(metrics["revisions_with_unknown_json_structure"], 1)
             self.assertEqual(metrics["revisions_with_invalid_json"], 2)

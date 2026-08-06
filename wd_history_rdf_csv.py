@@ -16,7 +16,7 @@ Timing notes for metrics:
 - json_parsing_seconds measures JSON decoding of revision text.
 - triple_extraction_seconds measures conversion from entity JSON to triple sets.
 - delta_computation_seconds measures set-delta construction and active-state updates.
-- csv_writing_seconds measures csv.writer row writes.
+- csv_writing_seconds measures CSV header writes and per-revision/page row blocks.
 These stages are measured around local operations and may overlap slightly with
 interpreter overhead outside the timed blocks.
 """
@@ -172,6 +172,7 @@ def new_metrics(input_path: str, output_path: str, output_schema: str, emit_even
         "pages_without_title": 0,
         "pages_skipped_non_entity_namespace": 0,
         "revisions_seen": 0,
+        "revisions_processed": 0,
         "revisions_with_valid_entity_json": 0,
         "revisions_missing_text": 0,
         "revisions_with_empty_text": 0,
@@ -618,9 +619,15 @@ def lifecycle_row(
     ]
 
 
-def write_lifecycle_row(
-    writer: csv.writer,
-    metrics: dict,
+def write_csv_rows(writer: Optional[csv.writer], metrics: dict, rows: list) -> None:
+    if writer is None or not rows:
+        return
+    t0 = time.perf_counter_ns()
+    writer.writerows(rows)
+    metrics["csv_writing_seconds"] += (time.perf_counter_ns() - t0) / 1_000_000_000
+
+
+def build_lifecycle_row(
     output_schema: str,
     info: ActiveInfo,
     triple: Triple,
@@ -629,16 +636,11 @@ def write_lifecycle_row(
     dparentid: str,
     duser: str,
     flags: Set[str],
-) -> None:
-    t0 = time.perf_counter_ns()
-    writer.writerow(lifecycle_row(output_schema, info, triple, ddate, drevid, dparentid, duser, flags))
-    metrics["csv_writing_seconds"] += (time.perf_counter_ns() - t0) / 1_000_000_000
-    metrics["output_data_rows"] += 1
+) -> list:
+    return lifecycle_row(output_schema, info, triple, ddate, drevid, dparentid, duser, flags)
 
 
-def write_event_row(
-    writer: Optional[csv.writer],
-    metrics: dict,
+def build_event_row(
     entity_id: str,
     page_id_value: str,
     rev_meta: RevisionMeta,
@@ -646,12 +648,9 @@ def write_event_row(
     triple: Triple,
     source_shard: str,
     flags: Set[str],
-) -> None:
-    if writer is None:
-        return
+) -> list:
     s, p, o = triple
-    t0 = time.perf_counter_ns()
-    writer.writerow([
+    return [
         entity_id,
         page_id_value,
         rev_meta.revision_id,
@@ -665,13 +664,7 @@ def write_event_row(
         source_shard,
         SCHEMA_VERSION,
         serialize_quality_flags(flags),
-    ])
-    metrics["csv_writing_seconds"] += (time.perf_counter_ns() - t0) / 1_000_000_000
-    metrics["event_output_rows"] += 1
-    if action == "ADD":
-        metrics["event_add_rows"] += 1
-    elif action == "DELETE":
-        metrics["event_delete_rows"] += 1
+    ]
 
 
 def title_matches_entity(page_title_value: str, entity_id: str) -> bool:
@@ -698,6 +691,8 @@ def process_revision_state(
     added = sorted(cur_set - prev_set)
     removed = sorted(prev_set - cur_set)
     metrics["delta_computation_seconds"] += (time.perf_counter_ns() - t0) / 1_000_000_000
+    lifecycle_rows = []
+    event_rows = []
 
     for t in added:
         metrics["triple_add_events"] += 1
@@ -713,7 +708,10 @@ def process_revision_state(
             schema_version=SCHEMA_VERSION,
             quality_flags=creation_flags,
         )
-        write_event_row(event_writer, metrics, entity_id, page_id_value, rev_meta, "ADD", t, source_shard, creation_flags)
+        if event_writer is not None:
+            event_rows.append(build_event_row(entity_id, page_id_value, rev_meta, "ADD", t, source_shard, creation_flags))
+            metrics["event_output_rows"] += 1
+            metrics["event_add_rows"] += 1
 
     for t in removed:
         metrics["triple_delete_events"] += 1
@@ -729,10 +727,11 @@ def process_revision_state(
             schema_version=SCHEMA_VERSION,
             quality_flags=set(page_quality_flags),
         )
-        write_event_row(event_writer, metrics, entity_id, page_id_value, rev_meta, "DELETE", t, source_shard, row_flags)
-        write_lifecycle_row(
-            writer,
-            metrics,
+        if event_writer is not None:
+            event_rows.append(build_event_row(entity_id, page_id_value, rev_meta, "DELETE", t, source_shard, row_flags))
+            metrics["event_output_rows"] += 1
+            metrics["event_delete_rows"] += 1
+        lifecycle_rows.append(build_lifecycle_row(
             output_schema,
             info,
             t,
@@ -741,10 +740,13 @@ def process_revision_state(
             rev_meta.parent_revision_id,
             rev_meta.contributor,
             row_flags,
-        )
+        ))
+        metrics["output_data_rows"] += 1
         metrics["closed_lifecycle_rows"] += 1
         active.pop(t, None)
 
+    write_csv_rows(event_writer, metrics, event_rows)
+    write_csv_rows(writer, metrics, lifecycle_rows)
     return cur_set
 
 
@@ -761,16 +763,19 @@ def process_page(
     title_value = page_title(page_elem)
     page_id_value = page_id(page_elem)
     ns_value = page_namespace(page_elem)
+    revisions = page_elem.findall(f"{MW_NS}revision")
+    metrics["revisions_seen"] += len(revisions)
+
+    if ns_value not in SUPPORTED_ENTITY_NAMESPACES:
+        metrics["pages_skipped_non_entity_namespace"] += 1
+        metrics["revisions_skipped_non_entity_namespace"] += len(revisions)
+        return
+
+    metrics["revisions_processed"] += len(revisions)
 
     if not title_value:
         metrics["pages_without_title"] += 1
         errors.log("warning", "page_without_title", "Page is missing a title.", page_id=page_id_value)
-        return
-
-    revisions = page_elem.findall(f"{MW_NS}revision")
-    if ns_value not in SUPPORTED_ENTITY_NAMESPACES:
-        metrics["pages_skipped_non_entity_namespace"] += 1
-        metrics["revisions_skipped_non_entity_namespace"] += len(revisions)
         return
 
     metrics["pages_processed"] += 1
@@ -780,7 +785,6 @@ def process_page(
     current_entity_id = ""
 
     for rev in revisions:
-        metrics["revisions_seen"] += 1
         rev_meta = extract_revision_meta(rev, metrics, errors, title_value, page_id_value)
         text_elem = rev.find(f"{MW_NS}text")
 
@@ -960,9 +964,12 @@ def process_page(
             output_schema,
         )
 
+    open_rows = []
     for t in sorted(active):
-        write_lifecycle_row(writer, metrics, output_schema, active[t], t, "", "", "", "", set(page_quality_flags))
+        open_rows.append(build_lifecycle_row(output_schema, active[t], t, "", "", "", "", set(page_quality_flags)))
+        metrics["output_data_rows"] += 1
         metrics["open_lifecycle_rows"] += 1
+    write_csv_rows(writer, metrics, open_rows)
 
     if not current_entity_id:
         current_entity_id = title_value
